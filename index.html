@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-500">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasan Zarghami Portfolio | Full-stack Web Developer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Load Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+
+    <style>
+        /* * --- OKLCH Theme Variables ---
+         * These variables are preserved to drive the dynamic light/dark theme switching.
+         * Tailwind uses arbitrary values (e.g., bg-[var(--background)]) to reference these.
+         */
+        :root {
+            --radius: 0.65rem;
+            /* Light Theme */
+            --background: oklch(1 0 0);
+            --foreground: oklch(0.141 0.005 285.823);
+            --card: oklch(1 0 0);
+            --primary: oklch(0.623 0.214 259.815);
+            --primary-foreground: oklch(0.97 0.014 254.604);
+            --secondary: oklch(0.967 0.001 286.375);
+            --secondary-foreground: oklch(0.21 0.006 285.885);
+            --muted-foreground: oklch(0.552 0.016 285.938);
+            --border: oklch(0.92 0.004 286.32);
+        }
+
+        .dark {
+            /* Dark Theme */
+            --background: oklch(0.141 0.005 285.823);
+            --foreground: oklch(0.985 0 0);
+            --card: oklch(0.21 0.006 285.885);
+            --primary: oklch(0.546 0.245 262.881);
+            --primary-foreground: oklch(0.985 0 0);
+            /* Using white for primary-foreground text in dark mode for contrast */
+            --secondary: oklch(0.274 0.006 286.033);
+            --secondary-foreground: oklch(0.985 0 0);
+            --muted-foreground: oklch(0.705 0.015 286.067);
+            --border: oklch(1 0 0 / 10%);
+        }
+
+        /* Set base colors and font for the body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        /* * --- Timeline Styling with Arbitrary Variants ---
+         * Replicating the ::before pseudo-element for the vertical line.
+         */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border);
+        }
+
+        /* Ensure chart has a defined height for responsiveness */
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-[var(--background)] text-[var(--foreground)]">
+
+<!-- Applied custom container class here -->
+<div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+    <header class="py-10 border-b border-[var(--border)] flex flex-col md:flex-row justify-between items-center sticky top-0 z-10 transition-colors duration-500 bg-[var(--background)]">
+        <h1 class="text-3xl font-extrabold text-[var(--foreground)] transition-colors duration-500 mb-4 md:mb-0">
+            Hasan Zarghami</h1>
+
+        <div class="flex items-center space-x-4">
+
+            <!-- Theme Toggle Button (Moon/Sun Icon) -->
+            <button id="theme-toggle"
+                    class="p-2 rounded-full text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors duration-300 bg-[var(--card)] border border-[var(--border)] shadow-sm">
+                <!-- Sun Icon -->
+                <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <!-- Moon Icon -->
+                <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Download Resume Button -->
+            <button id="download-button"
+                    class="flex items-center space-x-2 px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold rounded-[var(--radius)] shadow-md hover:bg-[var(--primary)] hover:opacity-90 transition-colors duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                <span>Download Resume</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="space-y-24 pt-12">
+
+        <!-- Hero and Contact Section -->
+        <section id="hero-contact" class="text-center">
+            <p class="text-xl md:text-2xl font-medium text-[var(--muted-foreground)]">Senior Full-Stack & Blockchain
+                Engineer</p>
+            <p class="mt-4 max-w-4xl mx-auto text-base text-[var(--foreground)]">
+                Senior engineer specializing in designing and building scalable, distributed systems with
+                JavaScript/TypeScript and Node.js. Proven expertise in microservice architecture, event-driven
+                communication using NATS, and developing high-performance crypto platforms. Passionate about clean
+                architecture and leveraging reactive programming to create seamless user experiences and robust
+                backends.
+            </p>
+            <div
+                    class="mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[var(--muted-foreground)]">
+                <a href="mailto:dev.zarghami@gmail.com"
+                   class="hover:text-[var(--primary)] transition-colors duration-300">dev.zarghami@gmail.com</a>
+                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                <span class="text-[var(--muted-foreground)]">+98 936 461 0252</span>
+                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                <a href="https://github.com/dev-zarghami" target="_blank"
+                   class="hover:text-[var(--primary)] transition-colors duration-300">GitHub</a>
+                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                <a href="https://linkedin.com/in/dev-zarghami" target="_blank"
+                   class="hover:text-[var(--primary)] transition-colors duration-300">LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- Interactive Skills Dashboard -->
+        <section id="skills-dashboard">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[var(--foreground)]">Interactive Skills Dashboard</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">Use the filters to explore specific
+                    domains and see my experience level.</p>
+            </div>
+
+            <div
+                    class="bg-[var(--card)] rounded-[var(--radius)] shadow-2xl p-6 md:p-8 transition-colors duration-500 border border-[var(--border)]">
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <!-- Active Button (Initial) -->
+                    <button id="filter-all"
+                            class="filter-btn bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold transition-all shadow-md">
+                        All
+                        Skills
+                    </button>
+                    <!-- Inactive Buttons -->
+                    <button id="filter-frontend"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                        Frontend
+                    </button>
+                    <button id="filter-backend"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                        Backend
+                        & Messaging
+                    </button>
+                    <button id="filter-blockchain"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                        Blockchain
+                    </button>
+                    <button id="filter-devops"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                        DevOps
+                        & Tools
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+                <div id="project-spotlight-text" class="mt-8 pt-6 border-t border-[var(--border)] text-center">
+                    <h3 class="font-bold text-lg text-[var(--foreground)]">Associated Key Projects</h3>
+                    <p id="project-text" class="text-sm text-[var(--muted-foreground)] mt-2">Projects related to the
+                        selected skill set will appear here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Journey Timeline -->
+        <section id="career-journey">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[var(--foreground)]">Career Journey (Top Roles)</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A chronological overview of my
+                    primary, long-term professional experience.</p>
+            </div>
+            <!-- Timeline container with arbitrary pseudo-element for the vertical line -->
+            <div class="relative space-y-12 max-w-4xl mx-auto timeline-line">
+                <!-- Timeline items will be dynamically generated here -->
+            </div>
+        </section>
+
+        <!-- Key Achievements & Open Source -->
+        <section id="key-achievements">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[var(--foreground)]">Key Achievements & Open Source</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">Highlighting significant metrics
+                    and public open-source contributions.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div
+                        class="md:col-span-1 bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 flex flex-col justify-center items-center text-center border border-[var(--border)] transition-colors duration-500">
+                    <p class="text-6xl font-extrabold text-[var(--primary)]">30%</p>
+                    <p class="mt-3 text-lg font-semibold text-[var(--foreground)]">Reduction in Frontend Complexity
+                    </p>
+                    <p class="mt-1 text-sm text-[var(--muted-foreground)]">Achieved at Kebrin Exchange by
+                        architecting a modular, reusable component library with Svelte/SvelteKit.</p>
+                </div>
+                <!-- Open Source Contributions Area -->
+                <div id="open-source-contributions" class="md:col-span-2 space-y-4">
+                    <!-- Single Contribution Card -->
+                    <div
+                            class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 border border-[var(--border)] transition-colors duration-500 h-full flex flex-col justify-center">
+                        <h3 class="text-xl font-bold text-[var(--foreground)] font-mono">adonis5-nats-broker</h3>
+                        <p class="mt-2 text-[var(--foreground)]">Designed and published a production-ready package
+                            for AdonisJS 5, enabling developers to build fully decoupled, event-driven microservices
+                            with NATS. It features a message-driven routing layer with support for REST-to-NATS
+                            bridging, middleware, and exception handling.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <!-- Tech Badges using Secondary/Accent colors -->
+                            <span
+                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">Microservices</span>
+                            <span
+                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">AdonisJS</span>
+                            <span
+                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">NATS</span>
+                            <span
+                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">Open
+                                    Source</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Portfolio Projects Grid -->
+        <section id="portfolio-projects">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[var(--foreground)]">All Projects</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A quick reference grid of
+                    additional projects and contract work showcasing diverse tech stacks.</p>
+            </div>
+            <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project cards will be dynamically generated here -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center mt-24 py-8 border-t border-[var(--border)] transition-colors duration-500">
+        <p class="text-[var(--muted-foreground)] text-sm">Crafted with love, caffeine, and a touch of code magic 🪄 by
+            Hasan Zarghami.</p>
+    </footer>
+
+</div>
+
+<!-- Toast Notification Container (for Download message) -->
+<div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-3"></div>
+
+<!-- Project Details Modal -->
+<div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <!-- Backdrop -->
+    <div id="modal-backdrop"
+         class="fixed inset-0 bg-black/60 transition-opacity duration-300 ease-in-out opacity-0"></div>
+
+    <!-- Modal Panel -->
+    <div id="modal-panel"
+         class="relative bg-[var(--card)] rounded-[var(--radius)] shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[var(--border)] transition-all duration-300 ease-in-out opacity-0 scale-95">
+        <div class="p-6 md:p-8">
+            <!-- Close Button -->
+            <button id="modal-close-btn"
+                    class="absolute top-4 right-4 text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Modal Content -->
+            <h2 id="modal-title" class="text-2xl md:text-3xl font-bold text-[var(--foreground)]"></h2>
+            <p class="font-mono text-sm text-[var(--muted-foreground)] mt-1">
+                <span id="modal-role"></span> &mdash; <span id="modal-date"></span>
+            </p>
+            <p id="modal-description" class="mt-4 text-[var(--foreground)]"></p>
+
+            <!-- Image Slider -->
+            <div class="mt-8">
+                <h3 class="text-lg font-semibold text-[var(--foreground)]">Project Gallery</h3>
+                <div id="modal-slider-container"
+                     class="relative mt-4 rounded-[var(--radius)] overflow-hidden bg-[var(--secondary)]">
+                    <div id="modal-slider-content" class="flex transition-transform duration-300 ease-in-out">
+                        <!-- Images will be injected here -->
+                    </div>
+                    <button id="slider-prev-btn"
+                            class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="slider-next-btn"
+                            class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const skillsData = {
+        all: {
+            labels: ['Svelte/SvelteKit', 'Vue.js/Nuxt.js', 'React/Next.js', 'RxJS', 'Node.js', 'AdonisJS', 'NestJS', 'NATS', 'Docker', 'WalletConnect', 'Microservices'],
+            data: [9, 8, 4, 7, 10, 8, 6, 9, 6, 8, 9],
+            projects: 'Kebrin Exchange, Oraclez DEX, HamtaPay, adonis5-nats-broker, Xchanger Exchange'
+        },
+        frontend: {
+            labels: ['Svelte/SvelteKit', 'Vue.js/Nuxt.js', 'React/Next.js', 'RxJS', 'TailwindCSS', 'PWA/SPA'],
+            data: [9, 8, 4, 7, 10, 9],
+            projects: 'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX'
+        },
+        backend: {
+            labels: ['Node.js', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
+            data: [10, 6, 8, 10, 9, 7, 8, 8],
+            projects: 'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'
+        },
+        blockchain: {
+            labels: ['DApp/DEX Dev', 'WalletConnect', 'Web3.js', 'Ethers.js', 'Crypto Ops'],
+            data: [8, 9, 8, 8, 7],
+            projects: 'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'
+        },
+        devops: {
+            labels: ['Docker', 'CI/CD', 'Git Flow', 'Nginx', 'Performance Optimization'],
+            data: [6, 5, 8, 4, 8],
+            projects: 'HamtaPay Crypto Exchange, Kebrin Exchange, Xchanger Exchange'
+        }
+    };
+
+    const timelineData = [
+        {
+            role: 'Front-End Team Lead & Developer',
+            company: 'Kebrin Exchange (formerly Erythron)',
+            date: 'Nov 2023 – Present',
+            details: [
+                'Led the complete frontend redevelopment of the crypto exchange platform, migrating to a modern, scalable architecture.',
+                'Engineered a new frontend using Svelte, RxJS, and TailwindCSS, establishing a reactive state management pattern.',
+                'Reduced system complexity by 30% and improved performance by designing and implementing a modular, reusable component library.'
+            ]
+        },
+        {
+            role: 'Full-Stack Web Developer',
+            company: 'HamtaPay Crypto Exchange',
+            date: 'Mar 2020 – Sep 2023',
+            details: [
+                'Designed and led the development of a microservice-based backend using Node.js and AdonisJS, handling high-volume transactions.',
+                'Engineered a multi-blockchain deposit and withdrawal system, integrating NATS message broker for asynchronous, reliable communication between services.',
+                'Developed CI/CD pipelines and optimized APIs for high scalability and security, supporting thousands of concurrent users.'
+            ]
+        },
+        {
+            role: 'Backend & Frontend Developer',
+            company: 'Navosh',
+            date: 'Mar 2017 – Jun 2019',
+            details: [
+                'Built and maintained backend services with PHP (Yii2) and MySQL before leading the transition to a modern Vue.js/Nuxt.js frontend.',
+                'Designed RESTful APIs, optimized database queries, and built responsive admin dashboards for content management.'
+            ]
+        }
+    ];
+
+    const portfolioProjects = [
+        {
+            title: 'Oraclez DEX Bridge Platform',
+            role: 'Freelance Frontend Developer',
+            date: 'Jun 2022 – Nov 2024',
+            tech: ['React', 'Next.js', 'Vue.js', 'WalletConnect', 'RxJS'],
+            description: 'Created complex DEX and bridge interfaces, enabling seamless cross-chain swaps and real-time blockchain communication. This involved integrating multiple wallets, managing asynchronous state with RxJS, and ensuring a fluid user experience across various devices and network conditions.',
+            imageUrl: 'https://placehold.co/800x400/7633f9/ffffff?text=Oraclez+DEX&font=lora',
+            websiteUrl: 'https://oraclez.xyz',
+            images: [
+                'https://placehold.co/800x450/7633f9/ffffff?text=Oraclez+Screenshot+1',
+                'https://placehold.co/800x450/8b5cf6/ffffff?text=Oraclez+Screenshot+2',
+                'https://placehold.co/800x450/a78bfa/ffffff?text=Oraclez+Screenshot+3'
+            ]
+        },
+        {
+            title: 'Atiex Exchange',
+            role: 'Full-Stack Web Developer',
+            date: 'Jun 2022 – Nov 2024',
+            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'Node.js', 'Express.js', 'Vue.js', 'Scss', 'Sass', "Lightweight Chart"],
+            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with Node.js and Express, connected to a PostgreSQL database, while the frontend utilized Vue.js for a reactive user interface.',
+            imageUrl: 'https://placehold.co/800x400/2a374a/ffffff?text=Atiex+Exchange&font=lora',
+            websiteUrl: 'https://atiex.uk',
+            images: [
+                './projects/atiex/screenshot-01.png',
+                './projects/atiex/screenshot-02.png',
+                './projects/atiex/screenshot-03.png',
+            ]
+        },
+        {
+            title: 'XChanger Exchange',
+            role: 'Full-Stack Web Developer',
+            date: 'Oct 2022 – Apr 2023',
+            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'Node.js', 'Adonis.js', 'Vue.js', 'primeVue', "Redis", 'SumSub KYC', 'Modular finance Payment', 'Tron Network', 'Bsc Network', 'Ethereum Network', "Bitcoin Network"],
+            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with Node.js and Express, connected to a MariaDB database, while the frontend utilized Vue.js for a reactive user interface.',
+            imageUrl: 'https://placehold.co/800x400/10b981/ffffff?text=XChanger+Exchange&font=lora',
+            websiteUrl: 'https://xchanger.uk',
+            images: [
+                './projects/xchanger/screenshot-01.png',
+                './projects/xchanger/screenshot-02.png',
+                './projects/xchanger/screenshot-03.png',
+                './projects/xchanger/screenshot-04.png',
+                './projects/xchanger/screenshot-05.png',
+                './projects/xchanger/screenshot-06.png',
+            ]
+        },
+        {
+            title: 'Task 724',
+            role: 'Front-End Developer',
+            date: 'Apr 2025 – Jun 2025',
+            tech: ['Svelte v5', 'SvelteKit', 'RxJS', 'Tailwind v4', 'Reown Appkit', 'Metamask', 'Trust Wallet', 'Gamification', 'Crypto', 'ethers.js', 'Vite', 'typescript', 'bits-ui'],
+            description: 'Developed a gamified crypto trading platform feature set, integrating a reward system with gems and tokens, and connecting to various wallets using modern web3 libraries. The primary focus was creating an engaging and intuitive user experience using Svelte and RxJS.',
+            imageUrl: 'https://placehold.co/800x400/3578c6/ffffff?text=Task+724&font=lora',
+            websiteUrl: 'https://task724.com',
+            images: [
+                './projects/task724/screenshot-01.png',
+                './projects/task724/screenshot-02.png',
+                './projects/task724/screenshot-03.png',
+                './projects/task724/screenshot-04.png',
+                './projects/task724/screenshot-05.png',
+                './projects/task724/screenshot-06.png',
+                './projects/task724/screenshot-07.png',
+                './projects/task724/screenshot-08.png',
+                './projects/task724/screenshot-09.png',
+                './projects/task724/screenshot-10.png',
+                './projects/task724/screenshot-11.png',
+                './projects/task724/screenshot-12.png',
+                './projects/task724/screenshot-13.png',
+                './projects/task724/screenshot-14.png',
+                './projects/task724/screenshot-15.png',
+                './projects/task724/screenshot-16.png',
+                './projects/task724/screenshot-17.png',
+                './projects/task724/screenshot-18.png',
+            ]
+        },
+    ];
+
+    let skillsChart;
+    let currentImageIndex = 0;
+    let projectImages = [];
+
+    // --- Chart Functions ---
+    const createOrUpdateChart = (filter = 'all') => {
+        const chartData = skillsData[filter];
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+
+        // Get Oklch Primary color dynamically from CSS root variables
+        const rootStyle = getComputedStyle(document.documentElement);
+        const accentColor = rootStyle.getPropertyValue('--primary').trim();
+        const headingColor = rootStyle.getPropertyValue('--foreground').trim();
+        const borderColor = rootStyle.getPropertyValue('--border').trim();
+
+        const chartConfig = {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Proficiency (1-10)',
+                    data: chartData.data,
+                    backgroundColor: accentColor,
+                    borderColor: accentColor,
+                    borderWidth: 1,
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {color: headingColor},
+                        grid: {color: borderColor}
+                    },
+                    y: {
+                        ticks: {color: headingColor},
+                        grid: {display: false}
+                    }
+                },
+                plugins: {
+                    legend: {display: false},
+                    tooltip: {
+                        callbacks: {
+                            title: (tooltipItems) => tooltipItems[0].label,
+                            label: (context) => ` Proficiency: ${context.formattedValue} / 10`
+                        }
+                    }
+                }
+            }
+        };
+
+        if (skillsChart) {
+            skillsChart.data.labels = chartData.labels;
+            skillsChart.data.datasets[0].data = chartData.data;
+            skillsChart.data.datasets[0].backgroundColor = accentColor;
+            skillsChart.data.datasets[0].borderColor = accentColor;
+            skillsChart.options.scales.x.ticks.color = headingColor;
+            skillsChart.options.scales.y.ticks.color = headingColor;
+            skillsChart.options.scales.x.grid.color = borderColor;
+            skillsChart.update();
+        } else {
+            skillsChart = new Chart(ctx, chartConfig);
+        }
+        document.getElementById('project-text').textContent = chartData.projects;
+    };
+
+    // --- Population Functions ---
+    const populateTimeline = () => {
+        const timelineContainer = document.querySelector('#career-journey .relative');
+        let timelineHTML = '';
+        timelineData.forEach(item => {
+            timelineHTML += `
+                    <div class="relative pl-12">
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-6 top-2.5 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[var(--card)] border-[3px] border-[var(--primary)]"></div>
+                        <div class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 hover:shadow-2xl transition-all duration-300 border border-[var(--border)]">
+                            <p class="font-mono text-sm text-[var(--muted-foreground)]">${item.date}</p>
+                            <h3 class="text-xl font-bold mt-1 text-[var(--foreground)]">${item.role}</h3>
+                            <p class="font-semibold text-[var(--foreground)]">${item.company}</p>
+                            <ul class="mt-4 space-y-2 text-sm list-disc pl-5 text-[var(--foreground)]">
+                                ${item.details.map(d => `<li>${d}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+        });
+        timelineContainer.innerHTML = timelineHTML;
+    };
+
+    const populatePortfolio = () => {
+        const gridContainer = document.getElementById('projects-grid');
+        gridContainer.innerHTML = portfolioProjects.map((project, index) => `
+                <div class="project-card bg-[var(--card)] rounded-[var(--radius)] shadow-lg border border-[var(--border)] hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden cursor-pointer" data-project-index="${index}">
+                    <img src="${project.imageUrl}" alt="${project.title} project cover" class="w-full h-52 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                    <div class="p-5 flex flex-col flex-grow">
+                        <p class="font-mono text-xs text-[var(--muted-foreground)]">${project.date}</p>
+                        <h3 class="text-lg font-bold mt-1 text-[var(--foreground)]">${project.title}</h3>
+                        <p class="font-semibold text-sm text-[var(--foreground)]">${project.role}</p>
+                        <a class="font-semibold text-sm text-[var(--primary)]" target="_blank" href="${project.websiteUrl}">${project.websiteUrl}</a>
+                        <p class="mt-3 text-sm text-[var(--muted-foreground)] flex-grow">${project.description.substring(0, 100)}...</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            ${project.tech.map(t => `<span class="text-xs font-semibold py-1 px-2.5 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+    };
+
+    // --- Modal & Slider Functions ---
+    const modal = document.getElementById('project-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalPanel = document.getElementById('modal-panel');
+    const modalSliderContent = document.getElementById('modal-slider-content');
+
+    const openModal = (projectIndex) => {
+        const project = portfolioProjects[projectIndex];
+        if (!project) return;
+
+        document.body.classList.add('modal-open');
+        document.getElementById('modal-title').textContent = project.title;
+        document.getElementById('modal-role').textContent = project.role;
+        document.getElementById('modal-date').textContent = project.date;
+        document.getElementById('modal-description').textContent = project.description;
+
+        projectImages = project.images || [];
+        modalSliderContent.innerHTML = projectImages.map(imgUrl =>
+            `<img src="${imgUrl}" class="w-full h-auto flex-shrink-0 object-contain" style="flex-basis: 100%;" onerror="this.style.display='none'">`
+        ).join('');
+
+        currentImageIndex = 0;
+        updateSlider();
+
+        modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            modalBackdrop.classList.remove('opacity-0');
+            modalPanel.classList.remove('opacity-0', 'scale-95');
+        });
+    };
+
+    const closeModal = () => {
+        modalBackdrop.classList.add('opacity-0');
+        modalPanel.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }, 300); // Match transition duration
+    };
+
+    const updateSlider = () => {
+        modalSliderContent.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+        document.getElementById('slider-prev-btn').style.display = currentImageIndex === 0 ? 'none' : 'block';
+        document.getElementById('slider-next-btn').style.display = currentImageIndex === projectImages.length - 1 ? 'none' : 'block';
+    };
+
+    // --- Theme Functions ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const root = document.querySelector(':root');
+
+    const setColor = (theme) => {
+        const lightColors = ["oklch(63.7% 0.237 25.331)", "oklch(69.6% 0.17 162.48)", "oklch(62.3% 0.214 259.815)", "oklch(60.6% 0.25 292.717)", "oklch(76.9% 0.188 70.08)", "oklch(64.5% 0.246 16.439)", "oklch(55.4% 0.046 257.417)", "oklch(55.2% 0.016 285.938)", "oklch(76.8% 0.233 130.85)", "oklch(62.7% 0.265 303.9)"]
+        const darkColors = ["oklch(57.7% 0.245 27.325)", "oklch(59.6% 0.145 163.225)", "oklch(54.6% 0.245 262.881)", "oklch(54.1% 0.281 293.009)", "oklch(66.6% 0.179 58.318)", "oklch(58.6% 0.253 17.585)", "oklch(44.6% 0.043 257.281)", "oklch(44.2% 0.017 285.786)", "oklch(64.8% 0.2 131.684)", "oklch(55.8% 0.288 302.321)"]
+        const randomIndex = Math.floor(Math.random() * lightColors.length);
+        if (theme === 'dark') {
+            root.style.setProperty('--primary', darkColors[randomIndex]);
+        } else {
+            root.style.setProperty('--primary', lightColors[randomIndex]);
+        }
+    }
+
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            moonIcon.classList.remove('hidden');
+            sunIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'light');
+        }
+        // Re-render chart to update colors
+        if (skillsChart) {
+            const activeButton = document.querySelector('.filter-btn.bg-\\[var\\(--primary\\)\\]');
+            let currentFilter = 'all';
+            if (activeButton) {
+                currentFilter = activeButton.id.replace('filter-', '') || 'all';
+            }
+            createOrUpdateChart(currentFilter);
+        }
+    };
+
+    const toggleTheme = () => {
+        const currentTheme = localStorage.getItem('theme');
+        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    };
+
+    // --- Toast Notification ---
+    const showToast = (message) => {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        // Using Tailwind's predefined green classes for success message
+        toast.className = 'p-3 bg-green-600 text-white rounded-lg shadow-xl flex items-center space-x-2 transition-all duration-500 opacity-0 transform translate-y-full';
+        toast.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${message}</span>`;
+
+        container.appendChild(toast);
+
+        // Show animation
+        setTimeout(() => {
+            toast.classList.remove('opacity-0', 'translate-y-full');
+            toast.classList.add('opacity-100', 'translate-y-0');
+        }, 10);
+
+        // Hide animation and removal
+        setTimeout(() => {
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'translate-y-full');
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
+        }, 3000);
+    };
+
+    // --- Initialization ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Initialize Theme
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (storedTheme) {
+            setColor(storedTheme)
+            setTheme(storedTheme);
+        } else if (systemPrefersDark) {
+            setColor('dark')
+            setTheme('dark');
+        } else {
+            setColor('light')
+            setTheme('light');
+        }
+
+        // 2. Populate Content
+        populateTimeline();
+        populatePortfolio();
+        // Initial chart render (must happen after theme is set so colors are correct)
+        createOrUpdateChart('all');
+
+
+        // 3. Setup Listeners
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Download button (simulated download)
+        document.getElementById('download-button').addEventListener('click', () => {
+            showToast('Resume download simulated! PDF generated successfully.');
+            const a = document.createElement('a');
+            a.href = './files/hasan-zarghami-resume.pdf';
+            a.download = 'hasan-zarghami-resume.pdf';
+            a.target = '_blank';
+            a.click();
+        });
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.id.replace('filter-', '');
+                createOrUpdateChart(filter);
+
+                filterButtons.forEach(btn => {
+                    // Reset all buttons to default state
+                    btn.classList.remove('bg-[var(--primary)]', 'text-[var(--primary-foreground)]');
+                    btn.classList.add('bg-[var(--card)]', 'text-[var(--foreground)]', 'border', 'border-[var(--border)]', 'hover:bg-[var(--secondary)]');
+                });
+
+                // Set active button state
+                button.classList.remove('bg-[var(--card)]', 'text-[var(--foreground)]', 'border', 'border-[var(--border)]', 'hover:bg-[var(--secondary)]');
+                button.classList.add('bg-[var(--primary)]', 'text-[var(--primary-foreground)]');
+            });
+        });
+
+        // Modal & Project Card Listeners
+        document.getElementById('projects-grid').addEventListener('click', (e) => {
+            const card = e.target.closest('.project-card');
+            if (card) {
+                openModal(card.dataset.projectIndex);
+            }
+        });
+
+        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Slider Listeners
+        document.getElementById('slider-prev-btn').addEventListener('click', () => {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateSlider();
+            }
+        });
+        document.getElementById('slider-next-btn').addEventListener('click', () => {
+            if (currentImageIndex < projectImages.length - 1) {
+                currentImageIndex++;
+                updateSlider();
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
