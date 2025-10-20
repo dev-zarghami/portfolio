@@ -130,7 +130,7 @@
                 Engineer</p>
             <p class="mt-4 max-w-4xl mx-auto text-base text-[var(--foreground)]">
                 Senior engineer specializing in designing and building scalable, distributed systems with
-                JavaScript/TypeScript and Node.js. Proven expertise in microservice architecture, event-driven
+                JavaScript/TypeScript and NodeJS. Proven expertise in microservice architecture, event-driven
                 communication using NATS, and developing high-performance crypto platforms. Passionate about clean
                 architecture and leveraging reactive programming to create seamless user experiences and robust
                 backends.
@@ -336,33 +336,74 @@
 </div>
 
 <script>
-    const skillsData = {
-        all: {
-            labels: ['Svelte/SvelteKit', 'Vue.js/Nuxt.js', 'React/Next.js', 'RxJS', 'Node.js', 'AdonisJS', 'NestJS', 'NATS', 'Docker', 'WalletConnect', 'Microservices'],
-            data: [9, 8, 4, 7, 10, 8, 6, 9, 6, 8, 9],
-            projects: 'Kebrin Exchange, Oraclez DEX, HamtaPay, adonis5-nats-broker, Xchanger Exchange'
-        },
-        frontend: {
-            labels: ['Svelte/SvelteKit', 'Vue.js/Nuxt.js', 'React/Next.js', 'RxJS', 'TailwindCSS', 'PWA/SPA'],
-            data: [9, 8, 4, 7, 10, 9],
-            projects: 'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX'
-        },
-        backend: {
-            labels: ['Node.js', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
-            data: [10, 6, 8, 10, 9, 7, 8, 8],
-            projects: 'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'
-        },
-        blockchain: {
-            labels: ['DApp/DEX Dev', 'WalletConnect', 'Web3.js', 'Ethers.js', 'Crypto Ops'],
-            data: [8, 9, 8, 8, 7],
-            projects: 'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'
-        },
-        devops: {
-            labels: ['Docker', 'CI/CD', 'Git Flow', 'Nginx', 'Performance Optimization'],
-            data: [6, 5, 8, 4, 8],
-            projects: 'HamtaPay Crypto Exchange, Kebrin Exchange, Xchanger Exchange'
-        }
+    const allSkills = {
+        // Frontend
+        'Svelte/SvelteKit': 9,
+        'VueJS/NuxtJS': 8,
+        'React/NextJS': 4,
+        'RxJS': 7,
+        'TailwindCSS': 10,
+        'PWA/SPA': 9,
+
+        // Backend
+        'NodeJS': 10,
+        'NestJS': 6,
+        'AdonisJS': 8,
+        'Socket': 10,
+        'REST API': 10,
+        'NATS': 9,
+        'RabbitMQ': 4,
+        'PostgreSQL': 6,
+        'MongoDB': 7,
+
+        // Blockchain
+        'DApp/DEX Dev': 8,
+        'WalletConnect': 9,
+        'Web3JS': 8,
+        'EthersJS': 8,
+        'Crypto Ops': 7,
+
+        // DevOps
+        'Docker': 6,
+        'CI/CD': 5,
+        'Git Flow': 8,
+        'Nginx': 4,
+        'Performance Optimization': 8,
+        'Microservices': 9
     };
+
+    // Helper function to build a skill group
+    function makeSkillGroup(skillNames, projects) {
+        return {
+            labels: skillNames,
+            data: skillNames.map(name => allSkills[name] ?? 0),
+            projects
+        };
+    }
+
+    const skillsData = {
+        all: makeSkillGroup(
+            ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'RxJS', 'NodeJS', 'AdonisJS', 'NestJS', 'NATS', 'Docker', 'WalletConnect', 'Microservices'],
+            'Kebrin Exchange, Oraclez DEX, HamtaPay, adonis5-nats-broker, Xchanger Exchange'
+        ),
+        frontend: makeSkillGroup(
+            ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'RxJS', 'TailwindCSS', 'PWA/SPA'],
+            'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX'
+        ),
+        backend: makeSkillGroup(
+            ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
+            'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'
+        ),
+        blockchain: makeSkillGroup(
+            ['DApp/DEX Dev', 'WalletConnect', 'Web3JS', 'EthersJS', 'Crypto Ops'],
+            'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'
+        ),
+        devops: makeSkillGroup(
+            ['Docker', 'CI/CD', 'Git Flow', 'Nginx', 'Performance Optimization'],
+            'HamtaPay Crypto Exchange, Kebrin Exchange, Xchanger Exchange'
+        )
+    };
+
 
     const timelineData = [
         {
@@ -380,7 +421,7 @@
             company: 'HamtaPay Crypto Exchange',
             date: 'Mar 2020 – Sep 2023',
             details: [
-                'Designed and led the development of a microservice-based backend using Node.js and AdonisJS, handling high-volume transactions.',
+                'Designed and led the development of a microservice-based backend using NodeJS and AdonisJS, handling high-volume transactions.',
                 'Engineered a multi-blockchain deposit and withdrawal system, integrating NATS message broker for asynchronous, reliable communication between services.',
                 'Developed CI/CD pipelines and optimized APIs for high scalability and security, supporting thousands of concurrent users.'
             ]
@@ -390,7 +431,7 @@
             company: 'Navosh',
             date: 'Mar 2017 – Jun 2019',
             details: [
-                'Built and maintained backend services with PHP (Yii2) and MySQL before leading the transition to a modern Vue.js/Nuxt.js frontend.',
+                'Built and maintained backend services with PHP (Yii2) and MySQL before leading the transition to a modern VueJS/NuxtJS frontend.',
                 'Designed RESTful APIs, optimized database queries, and built responsive admin dashboards for content management.'
             ]
         }
@@ -401,7 +442,7 @@
             title: 'Oraclez DEX Bridge Platform',
             role: 'Frontend Developer',
             date: 'Jun 2022 – Nov 2024',
-            tech: ['React/Next.js', 'Next.js', 'Vue.js', 'WalletConnect', 'RxJS'],
+            tech: ['React/NextJS', 'NextJS', 'VueJS', 'WalletConnect', 'RxJS'],
             description: 'Created complex DEX and bridge interfaces, enabling seamless cross-chain swaps and real-time blockchain communication. This involved integrating multiple wallets, managing asynchronous state with RxJS, and ensuring a fluid user experience across various devices and network conditions.',
             imageUrl: 'https://placehold.co/800x400/7633f9/ffffff?text=Oraclez+DEX&font=lora',
             websiteUrl: 'https://oraclez.xyz',
@@ -415,8 +456,8 @@
             title: 'Atiex Exchange',
             role: 'Full-Stack Web Developer',
             date: 'Jun 2022 – Nov 2024',
-            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'Node.js', 'Express.js', 'Vue.js', 'Scss', 'Sass', "Lightweight Chart"],
-            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with Node.js and Express, connected to a PostgreSQL database, while the frontend utilized Vue.js for a reactive user interface.',
+            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'NodeJS', 'ExpressJS', 'VueJS', 'Scss', 'Sass', "Lightweight Chart"],
+            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with NodeJS and Express, connected to a PostgreSQL database, while the frontend utilized VueJS for a reactive user interface.',
             imageUrl: 'https://placehold.co/800x400/2a374a/ffffff?text=Atiex+Exchange&font=lora',
             websiteUrl: 'https://atiex.uk',
             images: [
@@ -429,8 +470,8 @@
             title: 'XChanger Exchange',
             role: 'Full-Stack Web Developer',
             date: 'Oct 2022 – Apr 2023',
-            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'Node.js', 'Adonis.js', 'Vue.js', 'primeVue', "Redis", 'SumSub KYC', 'Modular finance Payment', 'Tron Network', 'Bsc Network', 'Ethereum Network', "Bitcoin Network"],
-            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with Node.js and Express, connected to a MariaDB database, while the frontend utilized Vue.js for a reactive user interface.',
+            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'NodeJS', 'AdonisJS', 'VueJS', 'primeVue', "Redis", 'SumSub KYC', 'Modular finance Payment', 'Tron Network', 'Bsc Network', 'Ethereum Network', "Bitcoin Network"],
+            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with NodeJS and Express, connected to a MariaDB database, while the frontend utilized VueJS for a reactive user interface.',
             imageUrl: 'https://placehold.co/800x400/10b981/ffffff?text=XChanger+Exchange&font=lora',
             websiteUrl: 'https://xchanger.uk',
             images: [
@@ -446,7 +487,7 @@
             title: 'Task 724',
             role: 'Front-End Developer',
             date: 'Apr 2025 – Jun 2025',
-            tech: ['Svelte v5', 'SvelteKit', 'RxJS', 'Tailwind v4', 'Reown Appkit', 'Metamask', 'Trust Wallet', 'Gamification', 'Crypto', 'ethers.js', 'Vite', 'typescript', 'bits-ui'],
+            tech: ['Svelte v5', 'SvelteKit', 'RxJS', 'Tailwind v4', 'Reown Appkit', 'Metamask', 'Trust Wallet', 'Gamification', 'Crypto', 'ethersJS', 'Vite', 'typescript', 'bits-ui'],
             description: 'Developed a gamified crypto trading platform feature set, integrating a reward system with gems and tokens, and connecting to various wallets using modern web3 libraries. The primary focus was creating an engaging and intuitive user experience using Svelte and RxJS.',
             imageUrl: 'https://placehold.co/800x400/3578c6/ffffff?text=Task+724&font=lora',
             websiteUrl: 'https://task724.com',
@@ -502,7 +543,7 @@
                 }]
             },
             options: {
-                indexAxis: 'y',
+                indexAxis: 'x',
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
