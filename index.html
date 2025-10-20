@@ -129,11 +129,10 @@
             <p class="text-xl md:text-2xl font-medium text-[var(--muted-foreground)]">Senior Full-Stack & Blockchain
                 Engineer</p>
             <p class="mt-4 max-w-4xl mx-auto text-base text-[var(--foreground)]">
-                Senior engineer specializing in designing and building scalable, distributed systems with
-                JavaScript/TypeScript and NodeJS. Proven expertise in microservice architecture, event-driven
-                communication using NATS, and developing high-performance crypto platforms. Passionate about clean
-                architecture and leveraging reactive programming to create seamless user experiences and robust
-                backends.
+                Senior Engineer specializing in designing and building scalable, distributed systems with
+                TypeScript/Node.js. Proven expertise in Microservice Architecture, Event-Driven Communication (NATS),
+                and developing high-performance Crypto/DeFi platforms. Strong advocate for Clean Architecture and
+                leveraging Reactive Programming (RxJS/Svelte) to deliver robust backends and seamless user experiences.
             </p>
             <div
                     class="mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[var(--muted-foreground)]">
@@ -233,10 +232,7 @@
                     <div
                             class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 border border-[var(--border)] transition-colors duration-500 h-full flex flex-col justify-center">
                         <h3 class="text-xl font-bold text-[var(--foreground)] font-mono">adonis5-nats-broker</h3>
-                        <p class="mt-2 text-[var(--foreground)]">Designed and published a production-ready package
-                            for AdonisJS 5, enabling developers to build fully decoupled, event-driven microservices
-                            with NATS. It features a message-driven routing layer with support for REST-to-NATS
-                            bridging, middleware, and exception handling.</p>
+                        <p class="mt-2 text-[var(--foreground)]">Designed and published a production-ready package for AdonisJS 5 to NPM, enabling developers to build fully decoupled, event-driven microservices with NATS.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <!-- Tech Badges using Secondary/Accent colors -->
                             <span
@@ -412,47 +408,64 @@
             company: 'Kebrin Exchange (formerly Erythron)',
             date: 'Nov 2023 – Present',
             details: [
-                'Led the complete frontend redevelopment of the crypto exchange platform, migrating to a modern, scalable architecture.',
-                'Engineered a new frontend using Svelte, RxJS, and TailwindCSS, establishing a reactive state management pattern.',
-                'Reduced system complexity by 30% and improved performance by designing and implementing a modular, reusable component library.'
+                'Led the complete frontend redevelopment, re-branding (Erythron to Kebrin), and architectural migration of the crypto exchange platform.',
+                'Engineered a new, performant frontend using SvelteKit, RxJS, and TailwindCSS, introducing a reactive state management and data feed pattern.',
+                'Implemented and utilized TradingView Charting Library with the UDF data feed structure for advanced price history visualization.',
+                'Reduced system complexity by 30% and improved performance by designing and implementing a modular, reusable component library.',
+                'Designed and implemented a modular component library, reducing complexity and improving application performance for both desktop and mobile views.'
             ]
         },
         {
-            role: 'Full-Stack Web Developer',
+            role: 'Senior Full-Stack & Microservice Architect',
             company: 'HamtaPay Crypto Exchange',
             date: 'Mar 2020 – Sep 2023',
             details: [
-                'Designed and led the development of a microservice-based backend using NodeJS and AdonisJS, handling high-volume transactions.',
-                'Engineered a multi-blockchain deposit and withdrawal system, integrating NATS message broker for asynchronous, reliable communication between services.',
-                'Developed CI/CD pipelines and optimized APIs for high scalability and security, supporting thousands of concurrent users.'
+                'Designed and led the development of a high-volume, microservice-based backend from the ground up using Node.js/AdonisJS and PostgreSQL.',
+                'Engineered a core multi-blockchain deposit and withdrawal system, leveraging NATS Message Broker for asynchronous, reliable communication.',
+                'Implemented core system architecture, including Kong API Gateway, robust caching, and time-series monitoring with InfluxDB/VictoriaMetrics.',
+                'Gained extensive knowledge in Digital Wallet structures (HD, BIP44) and secured on-chain transaction processes, supporting thousands of concurrent users.',
+                'Initially joined as a Front-End Developer, fully rewriting the legacy platform with Vue.js/Nuxt.js to improve scalability and mobile performance.'
             ]
         },
         {
-            role: 'Backend & Frontend Developer',
-            company: 'Navosh',
-            date: 'Mar 2017 – Jun 2019',
+            role: 'Senior Freelance Full-Stack Developer',
+            company: 'Oraclez DEX Bridge & Others',
+            date: 'Jun 2022 – Nov 2024 (Contract, Remote)',
             details: [
-                'Built and maintained backend services with PHP (Yii2) and MySQL before leading the transition to a modern VueJS/NuxtJS frontend.',
-                'Designed RESTful APIs, optimized database queries, and built responsive admin dashboards for content management.'
+                'Developed complex DEX and bridge interfaces using React, Next.js, and Vue.js, enabling seamless cross-chain swaps.',
+                'Integrated WalletConnect and MetaMask for DApp interaction and implemented RxJS for reactive, real-time blockchain communication.',
+            ]
+        },
+        {
+            role: 'Full-Stack Engineer',
+            company: 'Xchanger Exchange & Atiex (Crypto Projects)',
+            date: 'Oct 2022 – Apr 2023 (Contract, Remote)',
+            details: [
+                'Built and deployed a full-service crypto exchange platform (similar to Changelly) covering backend, frontend, DevOps, and blockchain integration.',
+                'Developed the robust backend using Node.js/AdonisJS, integrating HD Wallets (BIP32) to manage multi-chain operations (BSC, TRX, BTC, ETH).'
+            ]
+        },
+        {
+            role: 'Front-End Developer',
+            company: '724 Holding',
+            date: 'Apr 2023 – Jun 2024 (Remote)',
+            details: [
+                'Developed gamified crypto trading platform features, integrating Reown AppKit for wallet connection and blockchain interactions.',
+                'Optimized page load times and user experience using Svelte and RxJS.',
+            ]
+        },
+        {
+            role: 'Full-Stack Developer',
+            company: 'Navosh',
+            date: 'Mar 2019 – Jun 2020',
+            details: [
+                'Pioneered the company\'s transition to a modern frontend, leading the adoption and implementation of Vue.js and Nuxt.js for SSR projects.',
+                'Built and maintained backend services with PHP (Yii2) and MySQL, mastering concepts like PWA, SPA, and SSR.',
             ]
         }
     ];
 
     const portfolioProjects = [
-        {
-            title: 'Oraclez DEX Bridge Platform',
-            role: 'Frontend Developer',
-            date: 'Jun 2022 – Nov 2024',
-            tech: ['React/NextJS', 'NextJS', 'VueJS', 'WalletConnect', 'RxJS'],
-            description: 'Created complex DEX and bridge interfaces, enabling seamless cross-chain swaps and real-time blockchain communication. This involved integrating multiple wallets, managing asynchronous state with RxJS, and ensuring a fluid user experience across various devices and network conditions.',
-            imageUrl: 'https://placehold.co/800x400/7633f9/ffffff?text=Oraclez+DEX&font=lora',
-            websiteUrl: 'https://oraclez.xyz',
-            images: [
-                'https://placehold.co/800x450/7633f9/ffffff?text=Oraclez+Screenshot+1',
-                'https://placehold.co/800x450/8b5cf6/ffffff?text=Oraclez+Screenshot+2',
-                'https://placehold.co/800x450/a78bfa/ffffff?text=Oraclez+Screenshot+3'
-            ]
-        },
         {
             title: 'Atiex Exchange',
             role: 'Full-Stack Web Developer',
