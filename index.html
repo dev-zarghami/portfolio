@@ -232,7 +232,9 @@
                     <div
                             class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 border border-[var(--border)] transition-colors duration-500 h-full flex flex-col justify-center">
                         <h3 class="text-xl font-bold text-[var(--foreground)] font-mono">adonis5-nats-broker</h3>
-                        <p class="mt-2 text-[var(--foreground)]">Designed and published a production-ready package for AdonisJS 5 to NPM, enabling developers to build fully decoupled, event-driven microservices with NATS.</p>
+                        <p class="mt-2 text-[var(--foreground)]">Designed and published a production-ready package for
+                            AdonisJS 5 to NPM, enabling developers to build fully decoupled, event-driven microservices
+                            with NATS.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <!-- Tech Badges using Secondary/Accent colors -->
                             <span
@@ -765,14 +767,14 @@
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (storedTheme) {
-            setColor(storedTheme)
             setTheme(storedTheme);
+            setColor(storedTheme)
         } else if (systemPrefersDark) {
-            setColor('dark')
             setTheme('dark');
+            setColor('dark')
         } else {
-            setColor('light')
             setTheme('light');
+            setColor('light')
         }
 
         // 2. Populate Content
