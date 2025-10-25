@@ -822,7 +822,7 @@
     const chatCloseBtn = document.getElementById('chat-close-btn');
     const chatOpenBtn = document.getElementById('chat-open-btn');
 
-    const IMAGE_URL = "https://image-gen-ai.dev-zarghami.workers.dev?prompt=cyberpunk-developer";
+    const IMAGE_URL = "https://image-gen-ai.dev-zarghami.workers.dev?prompt=cyberpunk-web-developer-boy";
 
     /**
      * Creates and appends a new text message bubble to the chat window.
@@ -875,7 +875,7 @@
     function createImageMessage(imageUrl, loadingElement) {
         // Use the Image constructor to track loading state
         const tempImg = new Image();
-        tempImg.alt = "AI-Generated Cyberpunk Developer";
+        tempImg.alt = "AI-Generated Cyberpunk Web Developer";
 
         tempImg.onload = () => {
             // 1. Image loaded successfully, remove the loading state
@@ -932,7 +932,7 @@
      */
     function startChatSequence() {
         // 1. First Message: Introduction and prompt
-        createTextMessage("Hello! I’m an AI Assistant. I'm generating a unique 'cyberpunk developer boy' image for you.");
+        createTextMessage("Hello! I’m an AI Assistant. I'm generating a unique 'cyberpunk web developer boy' image for you.");
 
         // 2. Second Action: Start loading animation and image generation after a brief pause
         setTimeout(() => {
