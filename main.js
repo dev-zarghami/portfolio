@@ -22,6 +22,10 @@ const allSkills = {
     'RxJS': 7,
     'TailwindCSS': 8,
     'PWA/SPA': 8,
+    'Bits-UI': 5,
+    'Shadcn': 5,
+    'Ant Design': 5,
+    'PrimeVue': 5,
 
     // Backend
     'NodeJS': 8,
@@ -32,11 +36,11 @@ const allSkills = {
     'REST API': 9,
     'NATS': 7,
     'PostgreSQL': 3,
-    'MongoDB': 4,
+    'MongoDB': 5,
+    'MySql': 5,
+    'MariaDB': 5,
+    'TimeSeries DB': 5,
 
-    // Blockchain
-    'HD Wallet': 9,
-    'WalletConnect': 7,
 
     // DevOps
     'Docker': 4,
@@ -57,16 +61,12 @@ function makeSkillGroup(skillNames, projects) {
 
 const skillsData = {
     frontend: makeSkillGroup(
-        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'TailwindCSS', 'PWA/SPA', 'WalletConnect'],
+        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'Ant Design', "PrimeVue"],
         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', "Toos Ravin Saze"
     ),
     backend: makeSkillGroup(
-        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'PostgreSQL', 'MongoDB', 'Microservices'],
+        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'TimeSeries DB'],
         'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'
-    ),
-    blockchain: makeSkillGroup(
-        ['WalletConnect', 'HD Wallet'],
-        'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'
     ),
     devops: makeSkillGroup(
         ['Docker', 'CI/CD', 'Git Flow', 'Performance Optimization', 'Microservices'],
@@ -87,6 +87,7 @@ const allProjects = [
             .flatMap(group => group.projects.split(',').map(p => p.trim()))
     )
 ].join(', ');
+
 
 skillsData.all = makeSkillGroup(allSkillNames, allProjects);
 
@@ -381,6 +382,7 @@ function populatePackages() {
 // --- Chart Functions ---
 const createOrUpdateChart = (filter = 'all') => {
     const chartData = skillsData[filter];
+
     const ctx = document.getElementById('skillsChart').getContext('2d');
 
     // Get Oklch Primary color dynamically from CSS root variables
@@ -409,7 +411,7 @@ const createOrUpdateChart = (filter = 'all') => {
             scales: {
                 x: {
                     beginAtZero: true,
-                    max: 10,
+                    max: 50,
                     ticks: { color: headingColor },
                     grid: { color: borderColor }
                 },

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 50,
             "patches": [
                 {
                     "date": 1762250181691,
@@ -104,6 +104,110 @@
                 {
                     "date": 1762251471077,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,56 +93,65 @@\n \n const packagesData = [\n     {\n         name: \"adonis5-nats-broker\",\n-        description: \"Production-ready AdonisJS 5 package for building event-driven microservices with NATS message broker.\",\n+        description:\n+            \"Production-ready AdonisJS 5 package for building event-driven microservices with NATS message broker.\",\n         github: \"https://github.com/dev-zarghami/adonis5-nats-broker\",\n-        tech: [\"AdonisJS\", \"NATS\", \"Microservices\", \"NodeJS\"],\n+        tech: [\"AdonisJS\", \"NATS\", \"Microservices\", \"TypeScript\", \"Node.js\"],\n     },\n     {\n         name: \"mini-pow-blockchain\",\n-        description: \"A simple and minimal blockchain implementation in Node.js — built for learning and educational purposes.\",\n+        description:\n+            \"A simple and minimal blockchain implementation in Node.js — built for learning and educational purposes.\",\n         github: \"https://github.com/dev-zarghami/mini-pow-blockchain\",\n-        tech: [\"SvelteKit\", \"RxJS\", \"Reactive Programming\"],\n+        tech: [\"Node.js\", \"Blockchain\", \"Proof of Work\", \"Crypto\", \"Educational\"],\n     },\n     {\n         name: \"vite-plugin-robots-txt\",\n-        description: \"Generate robots.txt for Vite with env-aware policies and dev no-store preview \",\n+        description:\n+            \"Generate robots.txt for Vite with environment-aware rules and instant dev preview support.\",\n         github: \"https://github.com/dev-zarghami/vite-plugin-robots-txt\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        tech: [\"Vite\", \"Plugin\", \"SEO\", \"robots.txt\", \"JavaScript\"],\n     },\n     {\n         name: \"vite-plugin-app-version\",\n-        description: \"Vite plugin to generate an app version file (version.json) and optional virtual module with git/tag/build metadata. \",\n+        description:\n+            \"Vite plugin to generate an app version file (version.json) and optional virtual module with git/tag/build metadata.\",\n         github: \"https://github.com/dev-zarghami/vite-plugin-app-version\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        tech: [\"Vite\", \"Plugin\", \"Git\", \"Versioning\", \"Node.js\"],\n     },\n     {\n         name: \"vite-plugin-pwa-manifest\",\n-        description: \"Vite plugin to generate a PWA web app manifest with env-aware metadata and a dev no-store preview route. \",\n-        github: \"https://github.com/dev-zarghami/vite-plugin-app-version\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        description:\n+            \"Vite plugin to generate a PWA web app manifest with env-aware metadata and a dev no-store preview route.\",\n+        github: \"https://github.com/dev-zarghami/vite-plugin-pwa-manifest\",\n+        tech: [\"Vite\", \"PWA\", \"Manifest\", \"Service Worker\", \"Plugin\"],\n     },\n     {\n         name: \"vite-plugin-firebase-messaging-sw\",\n-        description: \"Vite plugin to generate a Firebase Cloud Messaging service worker with env-aware configs and dev no-store preview. \",\n+        description:\n+            \"Vite plugin to generate a Firebase Cloud Messaging service worker with environment-aware configs and dev preview.\",\n         github: \"https://github.com/dev-zarghami/vite-plugin-firebase-messaging-sw\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        tech: [\"Vite\", \"Firebase\", \"FCM\", \"Service Worker\", \"Plugin\"],\n     },\n     {\n         name: \"number-to-locale-text\",\n-        description: \" lightweight TypeScript package that converts numbers to their string representation in multiple languages. The package supports lazy loading of locale files, ensuring optimal performance. \",\n+        description:\n+            \"Lightweight TypeScript package that converts numbers to localized text in multiple languages, with lazy-loaded locales.\",\n         github: \"https://github.com/dev-zarghami/number-to-locale-text\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        tech: [\"TypeScript\", \"i18n\", \"Localization\", \"Utilities\", \"Node.js\"],\n     },\n     {\n         name: \"crypto-wallet-address-validator\",\n-        description: \"Advanced wallet address validator for validating Bitcoin, Litecoin, Ethereum and other altcoins addresses in Node.js and browser. \",\n+        description:\n+            \"Advanced wallet address validator supporting Bitcoin, Litecoin, Ethereum, and other altcoins in Node.js and browser.\",\n         github: \"https://github.com/dev-zarghami/crypto-wallet-address-validator\",\n-        tech: [\"NestJS\", \"Redis\", \"NATS\", \"Microservices\"],\n+        tech: [\"Node.js\", \"Crypto\", \"Wallets\", \"Validation\", \"Browser-Compatible\"],\n     },\n ];\n \n+\n const timelineData = [\n     {\n         role: 'Front-End Team Lead & Developer',\n         company: 'Kebrin Exchange (formerly Erythron)',\n"
+                },
+                {
+                    "date": 1762251798417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n         ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'TailwindCSS', 'PWA/SPA', 'WalletConnect'],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n-        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'PostgreSQL', 'MongoDB', 'Microservices'],\n+        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB'],\n         'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'\n     ),\n     blockchain: makeSkillGroup(\n         ['WalletConnect', 'HD Wallet'],\n"
+                },
+                {
+                    "date": 1762251833310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n         ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'TailwindCSS', 'PWA/SPA', 'WalletConnect'],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n-        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB'],\n+        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n         'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'\n     ),\n     blockchain: makeSkillGroup(\n         ['WalletConnect', 'HD Wallet'],\n"
+                },
+                {
+                    "date": 1762251901812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n }\n \n const skillsData = {\n     frontend: makeSkillGroup(\n-        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'TailwindCSS', 'PWA/SPA', 'WalletConnect'],\n+        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI','Shad-cn'],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n         ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n"
+                },
+                {
+                    "date": 1762251927742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n }\n \n const skillsData = {\n     frontend: makeSkillGroup(\n-        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI','Shad-cn'],\n+        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'AntD'],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n         ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n"
+                },
+                {
+                    "date": 1762251947597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n }\n \n const skillsData = {\n     frontend: makeSkillGroup(\n-        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'AntD'],\n+        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'Ant Design', \"Prime Vue\"],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n         ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n"
+                },
+                {
+                    "date": 1762251958826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n }\n \n const skillsData = {\n     frontend: makeSkillGroup(\n-        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'Ant Design', \"Prime Vue\"],\n+        ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'Ant Design', \"PrimeVue\"],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n         ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n"
+                },
+                {
+                    "date": 1762252021968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,10 @@\n     'REST API': 9,\n     'NATS': 7,\n     'PostgreSQL': 3,\n     'MongoDB': 4,\n+    'MySql': 4,\n+    'MariaDB': 4,\n \n     // Blockchain\n     'HD Wallet': 9,\n     'WalletConnect': 7,\n"
+                },
+                {
+                    "date": 1762252048383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,11 @@\n     'SocketIO/Websocket': 9,\n     'REST API': 9,\n     'NATS': 7,\n     'PostgreSQL': 3,\n-    'MongoDB': 4,\n-    'MySql': 4,\n-    'MariaDB': 4,\n+    'MongoDB': 5,\n+    'MySql': 5,\n+    'MongoDB': 5,\n \n     // Blockchain\n     'HD Wallet': 9,\n     'WalletConnect': 7,\n"
+                },
+                {
+                    "date": 1762252066650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     'NATS': 7,\n     'PostgreSQL': 3,\n     'MongoDB': 5,\n     'MySql': 5,\n-    'MongoDB': 5,\n+    'MariaDB': 5,\n \n     // Blockchain\n     'HD Wallet': 9,\n     'WalletConnect': 7,\n"
+                },
+                {
+                    "date": 1762252090837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n     'PostgreSQL': 3,\n     'MongoDB': 5,\n     'MySql': 5,\n     'MariaDB': 5,\n+    'TimeSeries DB': 5,\n \n     // Blockchain\n     'HD Wallet': 9,\n     'WalletConnect': 7,\n@@ -62,9 +63,9 @@\n         ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'PWA/SPA', 'TailwindCSS', 'Bits-UI', 'Shadcn', 'Ant Design', \"PrimeVue\"],\n         'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', \"Toos Ravin Saze\"\n     ),\n     backend: makeSkillGroup(\n-        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'Time Series DB (TSDB)'],\n+        ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'TimeSeries DB'],\n         'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'\n     ),\n     blockchain: makeSkillGroup(\n         ['WalletConnect', 'HD Wallet'],\n"
+                },
+                {
+                    "date": 1762252111217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     'React/NextJS': 4,\n     'RxJS': 7,\n     'TailwindCSS': 8,\n     'PWA/SPA': 8,\n+    'PWA/SPA': 8,\n \n     // Backend\n     'NodeJS': 8,\n     'ExpressJS': 7,\n"
+                },
+                {
+                    "date": 1762252118361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     'React/NextJS': 4,\n     'RxJS': 7,\n     'TailwindCSS': 8,\n     'PWA/SPA': 8,\n-    'PWA/SPA': 8,\n+    'Bits-UI': 5,\n \n     // Backend\n     'NodeJS': 8,\n     'ExpressJS': 7,\n"
+                },
+                {
+                    "date": 1762252131183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,10 @@\n     'RxJS': 7,\n     'TailwindCSS': 8,\n     'PWA/SPA': 8,\n     'Bits-UI': 5,\n+    'Shadcn': 5,\n+    \n \n     // Backend\n     'NodeJS': 8,\n     'ExpressJS': 7,\n"
+                },
+                {
+                    "date": 1762252139827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,10 @@\n     'TailwindCSS': 8,\n     'PWA/SPA': 8,\n     'Bits-UI': 5,\n     'Shadcn': 5,\n+    'Ant Design':5,\n     \n-\n     // Backend\n     'NodeJS': 8,\n     'ExpressJS': 7,\n     'NestJS': 5,\n"
+                },
+                {
+                    "date": 1762252148448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,11 @@\n     'TailwindCSS': 8,\n     'PWA/SPA': 8,\n     'Bits-UI': 5,\n     'Shadcn': 5,\n-    'Ant Design':5,\n-    \n+    'Ant Design': 5,\n+    'PrimeVue': 5,\n+\n     // Backend\n     'NodeJS': 8,\n     'ExpressJS': 7,\n     'NestJS': 5,\n"
+                },
+                {
+                    "date": 1762252199335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,12 +40,8 @@\n     'MySql': 5,\n     'MariaDB': 5,\n     'TimeSeries DB': 5,\n \n-    // Blockchain\n-    'HD Wallet': 9,\n-    'WalletConnect': 7,\n-\n     // DevOps\n     'Docker': 4,\n     'CI/CD': 4,\n     'Git Flow': 7,\n@@ -70,12 +66,8 @@\n     backend: makeSkillGroup(\n         ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'MySql', 'MariaDB', 'PostgreSQL', 'MongoDB', 'Microservices', 'TimeSeries DB'],\n         'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'\n     ),\n-    blockchain: makeSkillGroup(\n-        ['WalletConnect', 'HD Wallet'],\n-        'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'\n-    ),\n     devops: makeSkillGroup(\n         ['Docker', 'CI/CD', 'Git Flow', 'Performance Optimization', 'Microservices'],\n         'HamtaPay Crypto Exchange, Kebrin Exchange, Xchanger Exchange'\n     )\n"
+                },
+                {
+                    "date": 1762252283576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     'MySql': 5,\n     'MariaDB': 5,\n     'TimeSeries DB': 5,\n \n+\n     // DevOps\n     'Docker': 4,\n     'CI/CD': 4,\n     'Git Flow': 7,\n"
+                },
+                {
+                    "date": 1762252370000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,8 +80,10 @@\n         Object.values(skillsData).flatMap(group => group.labels)\n     )\n ];\n \n+console.log(allSkillNames)\n+\n const allProjects = [\n     ...new Set(\n         Object.values(skillsData)\n             .flatMap(group => group.projects.split(',').map(p => p.trim()))\n"
+                },
+                {
+                    "date": 1762252382651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,17 +80,17 @@\n         Object.values(skillsData).flatMap(group => group.labels)\n     )\n ];\n \n-console.log(allSkillNames)\n-\n const allProjects = [\n     ...new Set(\n         Object.values(skillsData)\n             .flatMap(group => group.projects.split(',').map(p => p.trim()))\n     )\n ].join(', ');\n \n+console.log(allProjects)\n+\n skillsData.all = makeSkillGroup(allSkillNames, allProjects);\n \n \n const packagesData = [\n"
+                },
+                {
+                    "date": 1762252394296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n             .flatMap(group => group.projects.split(',').map(p => p.trim()))\n     )\n ].join(', ');\n \n-console.log(allProjects)\n+console.log(makeSkillGroup(allSkillNames, allProjects))\n \n skillsData.all = makeSkillGroup(allSkillNames, allProjects);\n \n \n"
+                },
+                {
+                    "date": 1762252438011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,8 @@\n             .flatMap(group => group.projects.split(',').map(p => p.trim()))\n     )\n ].join(', ');\n \n-console.log(makeSkillGroup(allSkillNames, allProjects))\n \n skillsData.all = makeSkillGroup(allSkillNames, allProjects);\n \n \n@@ -382,8 +381,10 @@\n \n // --- Chart Functions ---\n const createOrUpdateChart = (filter = 'all') => {\n     const chartData = skillsData[filter];\n+\n+    console.log(chartData)\n     const ctx = document.getElementById('skillsChart').getContext('2d');\n \n     // Get Oklch Primary color dynamically from CSS root variables\n     const rootStyle = getComputedStyle(document.documentElement);\n"
+                },
+                {
+                    "date": 1762252486477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -382,9 +382,8 @@\n // --- Chart Functions ---\n const createOrUpdateChart = (filter = 'all') => {\n     const chartData = skillsData[filter];\n \n-    console.log(chartData)\n     const ctx = document.getElementById('skillsChart').getContext('2d');\n \n     // Get Oklch Primary color dynamically from CSS root variables\n     const rootStyle = getComputedStyle(document.documentElement);\n@@ -396,9 +395,13 @@\n         type: 'bar',\n         data: {\n             labels: chartData.labels,\n             datasets: [{\n-                label: 'Proficiency (1-10)',\n+                label: {\n+                    callback: function (value) {\n+                        return levelMap[value] || value;\n+                    },\n+                },\n                 data: chartData.data,\n                 backgroundColor: accentColor,\n                 borderColor: accentColor,\n                 borderWidth: 1,\n"
+                },
+                {
+                    "date": 1762252502122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -395,13 +395,9 @@\n         type: 'bar',\n         data: {\n             labels: chartData.labels,\n             datasets: [{\n-                label: {\n-                    callback: function (value) {\n-                        return levelMap[value] || value;\n-                    },\n-                },\n+                label: 'Proficiency (1-10)',\n                 data: chartData.data,\n                 backgroundColor: accentColor,\n                 borderColor: accentColor,\n                 borderWidth: 1,\n"
+                },
+                {
+                    "date": 1762252514725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -395,9 +395,8 @@\n         type: 'bar',\n         data: {\n             labels: chartData.labels,\n             datasets: [{\n-                label: 'Proficiency (1-10)',\n                 data: chartData.data,\n                 backgroundColor: accentColor,\n                 borderColor: accentColor,\n                 borderWidth: 1,\n"
+                },
+                {
+                    "date": 1762252537490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -395,8 +395,9 @@\n         type: 'bar',\n         data: {\n             labels: chartData.labels,\n             datasets: [{\n+                label: 'Proficiency (1-10)',\n                 data: chartData.data,\n                 backgroundColor: accentColor,\n                 borderColor: accentColor,\n                 borderWidth: 1,\n@@ -405,9 +406,9 @@\n         },\n         options: {\n             indexAxis: 'x',\n             responsive: true,\n-            maintainAspectRatio: false,\n+            maintainAspectRatio: true,\n             scales: {\n                 x: {\n                     beginAtZero: true,\n                     max: 10,\n"
+                },
+                {
+                    "date": 1762252550594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -406,13 +406,13 @@\n         },\n         options: {\n             indexAxis: 'x',\n             responsive: true,\n-            maintainAspectRatio: true,\n+            maintainAspectRatio: false,\n             scales: {\n                 x: {\n                     beginAtZero: true,\n-                    max: 10,\n+                    max: 50,\n                     ticks: { color: headingColor },\n                     grid: { color: borderColor }\n                 },\n                 y: {\n"
                 }
             ],
             "date": 1762250181691,
