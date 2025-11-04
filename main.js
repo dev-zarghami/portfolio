@@ -179,7 +179,7 @@ const timelineData = [
     },
     {
         role: 'Senior Freelance Full-Stack Developer',
-        company: 'Oraclez DEX Bridge & Others',
+        company: 'Oraclez DEX Bridge',
         date: 'Jun 2022 – Nov 2024 (Contract, Remote)',
         details: [
             'Developed complex DEX and bridge interfaces using React, Next.js, and Vue.js, enabling seamless cross-chain swaps.',
@@ -794,14 +794,215 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Setup Listeners
     themeToggle.addEventListener('click', toggleTheme);
 
-    // Download button (simulated download)
-    document.getElementById('download-button').addEventListener('click', () => {
-        const a = document.createElement('a');
-        a.href = './files/hasan-zarghami-resume.pdf';
-        a.download = 'hasan-zarghami-resume.pdf';
-        a.target = '_blank';
-        a.click();
-    });
+    async function downloadPdf() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: "pt", format: "a4" });
+
+        const margin = 40;
+        const maxWidth = 520;
+        const pageHeight = doc.internal.pageSize.height;
+        let y = margin;
+
+
+        function drawBadges(doc, items, startX, startY, maxWidth, lineHeight = 24, paddingX = 4, paddingY = 4) {
+            let x = startX;
+            let y = startY;
+            const pageWidth = doc.internal.pageSize.width;
+            const rightMargin = pageWidth - 40; // same margin as used in your doc
+
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(8);
+
+            items.forEach((item) => {
+                const textWidth = doc.getTextWidth(item);
+                const boxWidth = textWidth + paddingX * 2;
+                const boxHeight = lineHeight - 8;
+
+                // If it goes beyond max width → wrap to next line
+                if (x + boxWidth > rightMargin) {
+                    x = startX;
+                    y += lineHeight;
+                }
+
+                // Draw badge background (light gray with rounded corners)
+                doc.setFillColor(235, 235, 235);
+                doc.roundedRect(x, y - boxHeight + 5, boxWidth, boxHeight, 4, 4, "F");
+
+                // Draw text
+                doc.setTextColor(50);
+                doc.text(item, x + paddingX, y);
+
+                // Move x for next badge
+                x += boxWidth + 8;
+            });
+        }
+
+        // === START PDF CONTENT ===
+
+        // Title: Hasan Zarghami
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "bold");
+        doc.setFontSize(24);
+        doc.text("Hasan Zarghami", margin, y);
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        y += 22;
+
+        // Contact
+        const contact = document.getElementById("hero-contact")?.querySelectorAll("p")[0]?.innerText || "";
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(16);
+        doc.text(contact, margin, y);
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        y += 22;
+
+        // Mobile + Email
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        doc.text("Mobile: +98 936 461 0252  |  Email: dev.zarghami@gmail.com", margin, y);
+        y += 15;
+
+        // GitHub + LinkedIn
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        doc.text("GitHub: https://github.com/dev-zarghami  |  LinkedIn: https://linkedin.com/in/dev-zarghami", margin, y);
+        y += 20;
+
+        // Divider
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setDrawColor(200);
+        doc.line(margin, y, 555, y);
+        y += 25;
+
+        // Summary Title
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "bold");
+        doc.setFontSize(18);
+        doc.text("Summary", margin, y);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        y += 22;
+
+        // Summary Description
+        const summaryText =
+            "Senior Engineer specializing in designing and building scalable, distributed systems with TypeScript/Node.js. " +
+            "Proven expertise in Microservice Architecture, Event-Driven Communication (NATS), and developing high-performance " +
+            "Crypto/DeFi platforms. Strong advocate for Clean Architecture and leveraging Reactive Programming (RxJS/Svelte) to " +
+            "deliver robust backends and seamless user experiences.";
+        const summaryLines = doc.splitTextToSize(summaryText, maxWidth);
+        const summaryHeight = summaryLines.length * 12;
+        if (y + summaryHeight > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.text(summaryLines, margin, y);
+        y += summaryHeight + 5;
+
+        // Divider
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setDrawColor(200);
+        doc.line(margin, y, 555, y);
+        y += 25;
+
+        // Experience Section
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "bold");
+        doc.setFontSize(18);
+        doc.text("Experience", margin, y);
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        y += 25;
+
+        // Loop through timelineData
+        timelineData.forEach((item) => {
+            // Job title
+            if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+            doc.setFont("roboto", "bold");
+            doc.setFontSize(12);
+            doc.text(item.company + " - " + item.role, margin, y);
+            y += 15;
+
+            // Date
+            doc.setFont("roboto", "italic");
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text(item.date, margin, y);
+            doc.setFont("roboto", "normal");
+            doc.setTextColor(0);
+            y += 15;
+
+            // Details
+            doc.setFont("helvetica", "normal");
+            const lines = doc.splitTextToSize(item.details, maxWidth);
+            const height = lines.length * 12;
+            if (y + height > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+            doc.text(lines, margin, y);
+            y += height + 20;
+        });
+
+        // Divider
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setDrawColor(200);
+        doc.line(margin, y, 555, y);
+        y += 25;
+
+        // Projects Section
+        if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+        doc.setFont("roboto", "bold");
+        doc.setFontSize(18);
+        doc.text("Projects", margin, y);
+        doc.setFont("roboto", "normal");
+        doc.setFontSize(10);
+        y += 25;
+
+        // Loop through timelineData
+        portfolioProjects.forEach((item) => {
+            // Job title
+            if (y + 30 > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+            doc.setFont("roboto", "bold");
+            doc.setFontSize(12);
+            doc.text(item.title + " - " + item.role, margin, y);
+            y += 15;
+
+            // Date
+            doc.setFont("roboto", "italic");
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text(item.date, margin, y);
+            doc.setFont("roboto", "normal");
+            doc.setTextColor(0);
+            y += 20;
+
+            // Details
+            doc.setFont("helvetica", "normal");
+            const lines = doc.splitTextToSize(item.description, maxWidth);
+            const height = lines.length * 12;
+            if (y + height > pageHeight - margin - 40) { doc.addPage(); y = margin; }
+            doc.text(lines, margin, y);
+            y += height;
+            y += 5;
+
+            drawBadges(doc, item.tech, margin, y, maxWidth);
+            y += 80;
+        });
+
+    
+        // Footer
+        doc.setFontSize(9);
+        doc.setTextColor(150);
+        doc.text(
+            "Generated automatically — " + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+            margin,
+            pageHeight - 30
+        );
+
+        // Save
+        doc.save("Hasan-Zarghami-Resume.pdf");
+    }
+
+    document.getElementById("download-button").addEventListener("click", downloadPdf);
+
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
