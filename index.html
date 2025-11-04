@@ -8,18 +8,18 @@
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-5HB8JBSR');</script>
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5HB8JBSR');</script>
     <!-- End Google Tag Manager -->
 
     <!-- Load Tailwind CSS -->
@@ -30,1143 +30,284 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
-    <style>
-        /* * --- OKLCH Theme Variables ---
-         * These variables are preserved to drive the dynamic light/dark theme switching.
-         * Tailwind uses arbitrary values (e.g., bg-[var(--background)]) to reference these.
-         */
-        :root {
-            --radius: 0.65rem;
-            /* Light Theme */
-            --background: oklch(1 0 0);
-            --foreground: oklch(0.141 0.005 285.823);
-            --card: oklch(1 0 0);
-            --primary: oklch(0.623 0.214 259.815);
-            --primary-foreground: oklch(0.97 0.014 254.604);
-            --secondary: oklch(0.967 0.001 286.375);
-            --secondary-foreground: oklch(0.21 0.006 285.885);
-            --muted-foreground: oklch(0.552 0.016 285.938);
-            --border: oklch(0.92 0.004 286.32);
-        }
-
-        .dark {
-            /* Dark Theme */
-            --background: oklch(0.141 0.005 285.823);
-            --foreground: oklch(0.985 0 0);
-            --card: oklch(0.21 0.006 285.885);
-            --primary: oklch(0.546 0.245 262.881);
-            --primary-foreground: oklch(0.985 0 0);
-            /* Using white for primary-foreground text in dark mode for contrast */
-            --secondary: oklch(0.274 0.006 286.033);
-            --secondary-foreground: oklch(0.985 0 0);
-            --muted-foreground: oklch(0.705 0.015 286.067);
-            --border: oklch(1 0 0 / 10%);
-        }
-
-        /* Set base colors and font for the body */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
-            color: var(--foreground);
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        /* * --- Timeline Styling with Arbitrary Variants ---
-         * Replicating the ::before pseudo-element for the vertical line.
-         */
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            left: 1.5rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--border);
-        }
-
-        /* Ensure chart has a defined height for responsiveness */
-        .chart-container {
-            position: relative;
-            height: 350px;
-            width: 100%;
-        }
-
-
-        /* Custom scrollbar for chat messages */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: var(--background);
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: oklch(0.5 0.05 285.823); /* A gray-blue thumb */
-            border-radius: 3px;
-        }
-
-        /* Hide the chatbot initially for a toggle button if needed, but keeping it visible for now */
-        /* #chatbot-container { display: none; } */
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="antialiased bg-[var(--background)] text-[var(--foreground)]">
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HB8JBSR"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HB8JBSR" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-<!-- Applied custom container class here -->
-<div class="container mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Applied custom container class here -->
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
 
-    <header class="py-10 border-b border-[var(--border)] flex flex-col md:flex-row justify-between items-center sticky top-0 z-10 transition-colors duration-500 bg-[var(--background)]">
-        <h1 class="text-3xl font-extrabold text-[var(--foreground)] transition-colors duration-500 mb-4 md:mb-0">
-            Hasan Zarghami</h1>
+        <header
+            class="py-10 border-b border-[var(--border)] flex flex-col md:flex-row justify-between items-center sticky top-0 z-10 transition-colors duration-500 bg-[var(--background)]">
+            <h1 class="text-3xl font-extrabold text-[var(--foreground)] transition-colors duration-500 mb-4 md:mb-0">
+                Hasan Zarghami</h1>
 
-        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4">
 
-            <!-- Theme Toggle Button (Moon/Sun Icon) -->
-            <button id="theme-toggle"
+                <!-- Theme Toggle Button (Moon/Sun Icon) -->
+                <button id="theme-toggle"
                     class="p-2 rounded-full text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors duration-300 bg-[var(--card)] border border-[var(--border)] shadow-sm">
-                <!-- Sun Icon -->
-                <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                    </path>
-                </svg>
-                <!-- Moon Icon -->
-                <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                    </path>
-                </svg>
-            </button>
+                    <!-- Sun Icon -->
+                    <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
 
-            <!-- Download Resume Button -->
-            <button id="download-button"
+                <!-- Download Resume Button -->
+                <button id="download-button"
                     class="flex items-center space-x-2 px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold rounded-[var(--radius)] shadow-md hover:bg-[var(--primary)] hover:opacity-90 transition-colors duration-300">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-                <span>Download Resume</span>
-            </button>
-        </div>
-    </header>
-
-    <main class="space-y-24 pt-12">
-
-        <!-- Hero and Contact Section -->
-        <section id="hero-contact" class="text-center">
-            <p class="text-xl md:text-2xl font-medium text-[var(--muted-foreground)]">Senior Full-Stack & Blockchain
-                Engineer</p>
-            <p class="mt-4 max-w-4xl mx-auto text-base text-[var(--foreground)]">
-                Senior Engineer specializing in designing and building scalable, distributed systems with
-                TypeScript/Node.js. Proven expertise in Microservice Architecture, Event-Driven Communication (NATS),
-                and developing high-performance Crypto/DeFi platforms. Strong advocate for Clean Architecture and
-                leveraging Reactive Programming (RxJS/Svelte) to deliver robust backends and seamless user experiences.
-            </p>
-            <div
-                    class="mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[var(--muted-foreground)]">
-                <a href="mailto:dev.zarghami@gmail.com"
-                   class="hover:text-[var(--primary)] transition-colors duration-300">dev.zarghami@gmail.com</a>
-                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
-                <span class="text-[var(--muted-foreground)]">+98 936 461 0252</span>
-                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
-                <a href="https://github.com/dev-zarghami" target="_blank"
-                   class="hover:text-[var(--primary)] transition-colors duration-300">GitHub</a>
-                <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
-                <a href="https://linkedin.com/in/dev-zarghami" target="_blank"
-                   class="hover:text-[var(--primary)] transition-colors duration-300">LinkedIn</a>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    <span>Download Resume</span>
+                </button>
             </div>
-        </section>
+        </header>
 
-        <!-- Interactive Skills Dashboard -->
-        <section id="skills-dashboard">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-[var(--foreground)]">Interactive Skills Dashboard</h2>
-                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">Use the filters to explore specific
-                    domains and see my experience level.</p>
-            </div>
+        <main class="space-y-24 pt-12">
 
-            <div
-                    class="bg-[var(--card)] rounded-[var(--radius)] shadow-2xl p-6 md:p-8 transition-colors duration-500 border border-[var(--border)]">
-                <div class="flex flex-wrap justify-center gap-2 mb-6">
-                    <!-- Active Button (Initial) -->
-                    <button id="filter-all"
-                            class="filter-btn bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold transition-all shadow-md">
-                        All
-                        Skills
-                    </button>
-                    <!-- Inactive Buttons -->
-                    <button id="filter-frontend"
-                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
-                        Frontend
-                    </button>
-                    <button id="filter-backend"
-                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
-                        Backend
-                        & Messaging
-                    </button>
-                    <button id="filter-blockchain"
-                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
-                        Blockchain
-                    </button>
-                    <button id="filter-devops"
-                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
-                        DevOps
-                        & Tools
-                    </button>
-                </div>
-                <div class="chart-container">
-                    <canvas id="skillsChart"></canvas>
-                </div>
-                <div id="project-spotlight-text" class="mt-8 pt-6 border-t border-[var(--border)] text-center">
-                    <h3 class="font-bold text-lg text-[var(--foreground)]">Associated Key Projects</h3>
-                    <p id="project-text" class="text-sm text-[var(--muted-foreground)] mt-2">Projects related to the
-                        selected skill set will appear here.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Career Journey Timeline -->
-        <section id="career-journey">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-[var(--foreground)]">Career Journey (Top Roles)</h2>
-                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A chronological overview of my
-                    primary, long-term professional experience.</p>
-            </div>
-            <!-- Timeline container with arbitrary pseudo-element for the vertical line -->
-            <div class="relative space-y-12 max-w-4xl mx-auto timeline-line">
-                <!-- Timeline items will be dynamically generated here -->
-            </div>
-        </section>
-
-        <!-- Key Achievements & Open Source -->
-        <section id="key-achievements">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-[var(--foreground)]">Key Achievements & Open Source</h2>
-                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">Highlighting significant metrics
-                    and public open-source contributions.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Hero and Contact Section -->
+            <section id="hero-contact" class="text-center">
+                <p class="text-xl md:text-2xl font-medium text-[var(--muted-foreground)]">Senior Full-Stack & Blockchain
+                    Engineer</p>
+                <p class="mt-4 max-w-4xl mx-auto text-base text-[var(--foreground)]">
+                    Senior Engineer specializing in designing and building scalable, distributed systems with
+                    TypeScript/Node.js. Proven expertise in Microservice Architecture, Event-Driven Communication
+                    (NATS),
+                    and developing high-performance Crypto/DeFi platforms. Strong advocate for Clean Architecture and
+                    leveraging Reactive Programming (RxJS/Svelte) to deliver robust backends and seamless user
+                    experiences.
+                </p>
                 <div
-                        class="md:col-span-1 bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 flex flex-col justify-center items-center text-center border border-[var(--border)] transition-colors duration-500">
-                    <p class="text-6xl font-extrabold text-[var(--primary)]">30%</p>
-                    <p class="mt-3 text-lg font-semibold text-[var(--foreground)]">Reduction in Frontend Complexity
+                    class="mt-8 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[var(--muted-foreground)]">
+                    <a href="mailto:dev.zarghami@gmail.com"
+                        class="hover:text-[var(--primary)] transition-colors duration-300">dev.zarghami@gmail.com</a>
+                    <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                    <span class="text-[var(--muted-foreground)]">+98 936 461 0252</span>
+                    <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                    <a href="https://github.com/dev-zarghami" target="_blank"
+                        class="hover:text-[var(--primary)] transition-colors duration-300">GitHub</a>
+                    <span class="hidden sm:inline-block border-l border-[var(--border)] h-5"></span>
+                    <a href="https://linkedin.com/in/dev-zarghami" target="_blank"
+                        class="hover:text-[var(--primary)] transition-colors duration-300">LinkedIn</a>
+                </div>
+            </section>
+
+            <!-- Interactive Skills Dashboard -->
+            <section id="skills-dashboard">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[var(--foreground)]">Interactive Skills Dashboard</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">Use the filters to explore specific
+                        domains and see my experience level.</p>
+                </div>
+
+                <div
+                    class="bg-[var(--card)] rounded-[var(--radius)] shadow-2xl p-6 md:p-8 transition-colors duration-500 border border-[var(--border)]">
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <!-- Active Button (Initial) -->
+                        <button id="filter-all"
+                            class="filter-btn bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold transition-all shadow-md">
+                            All
+                            Skills
+                        </button>
+                        <!-- Inactive Buttons -->
+                        <button id="filter-frontend"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                            Frontend
+                        </button>
+                        <button id="filter-backend"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                            Backend
+                        </button>
+                        <button id="filter-blockchain"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                            Blockchain
+                        </button>
+                        <button id="filter-devops"
+                            class="filter-btn bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--secondary)] transition-all">
+                            DevOps
+                        </button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                    <div id="project-spotlight-text" class="mt-8 pt-6 border-t border-[var(--border)] text-center">
+                        <h3 class="font-bold text-lg text-[var(--foreground)]">Associated Key Projects</h3>
+                        <p id="project-text" class="text-sm text-[var(--muted-foreground)] mt-2">Projects related to the
+                            selected skill set will appear here.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Journey Timeline -->
+            <section id="career-journey">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[var(--foreground)]">Career Journey (Top Roles)</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A chronological overview of my
+                        primary, long-term professional experience.</p>
+                </div>
+                <!-- Timeline container with arbitrary pseudo-element for the vertical line -->
+                <div class="relative space-y-12 max-w-4xl mx-auto timeline-line">
+                    <!-- Timeline items will be dynamically generated here -->
+                </div>
+            </section>
+
+
+            <section id="packages-libraries">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Packages & Libraries</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">
+                        Open-source tools and packages I’ve created or contributed to.
                     </p>
-                    <p class="mt-1 text-sm text-[var(--muted-foreground)]">Achieved at Kebrin Exchange by
-                        architecting a modular, reusable component library with Svelte/SvelteKit.</p>
                 </div>
-                <!-- Open Source Contributions Area -->
-                <div id="open-source-contributions" class="md:col-span-2 space-y-4">
-                    <!-- Single Contribution Card -->
-                    <div
-                            class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 border border-[var(--border)] transition-colors duration-500 h-full flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-[var(--foreground)] font-mono">adonis5-nats-broker</h3>
-                        <p class="mt-2 text-[var(--foreground)]">Designed and published to NPM a production-ready
-                            package for
-                            AdonisJS 5, enabling developers to build fully decoupled, event-driven microservices
-                            with NATS.</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <!-- Tech Badges using Secondary/Accent colors -->
-                            <span
-                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">Microservices</span>
-                            <span
-                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">AdonisJS</span>
-                            <span
-                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">NATS</span>
-                            <span
-                                    class="text-xs font-semibold py-1 px-3 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">Open
-                                    Source</span>
-                        </div>
-                    </div>
+                <div id="packages-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards populated by JS -->
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- All Portfolio Projects Grid -->
-        <section id="portfolio-projects">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-[var(--foreground)]">All Projects</h2>
-                <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A quick reference grid of
-                    additional projects and contract work showcasing diverse tech stacks.</p>
-            </div>
-            <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project cards will be dynamically generated here -->
-            </div>
-        </section>
+            <section id="portfolio-projects"></section>
 
-    </main>
+            <!-- All Portfolio Projects Grid -->
+            <section id="portfolio-projects">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[var(--foreground)]">All Projects</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">A quick reference grid of
+                        additional projects and contract work showcasing diverse tech stacks.</p>
+                </div>
+                <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project cards will be dynamically generated here -->
+                </div>
+            </section>
 
-    <footer class="text-center mt-24 py-8 border-t border-[var(--border)] transition-colors duration-500">
-        <p class="text-[var(--muted-foreground)] text-sm">Crafted with love, caffeine, and a touch of code magic 🪄 by
-            Hasan Zarghami.</p>
-    </footer>
+        </main>
 
-</div>
+        <footer class="text-center mt-24 py-8 border-t border-[var(--border)] transition-colors duration-500">
+            <p class="text-[var(--muted-foreground)] text-sm">Crafted with love, caffeine, and a touch of code magic 🪄
+                by
+                Hasan Zarghami.</p>
+        </footer>
 
-<!-- Toast Notification Container (for Download message) -->
-<div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-3"></div>
+    </div>
 
-<!-- Project Details Modal -->
-<div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-    <!-- Backdrop -->
-    <div id="modal-backdrop"
-         class="fixed inset-0 bg-black/60 transition-opacity duration-300 ease-in-out opacity-0"></div>
+    <!-- Toast Notification Container (for Download message) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-3"></div>
 
-    <!-- Modal Panel -->
-    <div id="modal-panel"
-         class="relative bg-[var(--card)] rounded-[var(--radius)] shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[var(--border)] transition-all duration-300 ease-in-out opacity-0 scale-95">
-        <div class="p-6 md:p-8">
-            <!-- Close Button -->
-            <button id="modal-close-btn"
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Backdrop -->
+        <div id="modal-backdrop"
+            class="fixed inset-0 bg-black/60 transition-opacity duration-300 ease-in-out opacity-0"></div>
+
+        <!-- Modal Panel -->
+        <div id="modal-panel"
+            class="relative bg-[var(--card)] rounded-[var(--radius)] shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[var(--border)] transition-all duration-300 ease-in-out opacity-0 scale-95">
+            <div class="p-6 md:p-8">
+                <!-- Close Button -->
+                <button id="modal-close-btn"
                     class="absolute top-4 right-4 text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
 
-            <!-- Modal Content -->
-            <h2 id="modal-title" class="text-2xl md:text-3xl font-bold text-[var(--foreground)]"></h2>
-            <p class="font-mono text-sm text-[var(--muted-foreground)] mt-1">
-                <span id="modal-role"></span> &mdash; <span id="modal-date"></span>
-            </p>
-            <p id="modal-description" class="mt-4 text-[var(--foreground)]"></p>
+                <!-- Modal Content -->
+                <h2 id="modal-title" class="text-2xl md:text-3xl font-bold text-[var(--foreground)]"></h2>
+                <p class="font-mono text-sm text-[var(--muted-foreground)] mt-1">
+                    <span id="modal-role"></span> &mdash; <span id="modal-date"></span>
+                </p>
+                <p id="modal-description" class="mt-4 text-[var(--foreground)]"></p>
 
-            <!-- Image Slider -->
-            <div class="mt-8">
-                <h3 class="text-lg font-semibold text-[var(--foreground)]">Project Gallery</h3>
-                <div id="modal-slider-container"
-                     class="relative mt-4 rounded-[var(--radius)] overflow-hidden bg-[var(--secondary)]">
-                    <div id="modal-slider-content" class="flex transition-transform duration-300 ease-in-out">
-                        <!-- Images will be injected here -->
-                    </div>
-                    <button id="slider-prev-btn"
+                <!-- Image Slider -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-[var(--foreground)]">Project Gallery</h3>
+                    <div id="modal-slider-container"
+                        class="relative mt-4 rounded-[var(--radius)] overflow-hidden bg-[var(--secondary)]">
+                        <div id="modal-slider-content" class="flex transition-transform duration-300 ease-in-out">
+                            <!-- Images will be injected here -->
+                        </div>
+                        <button id="slider-prev-btn"
                             class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="slider-next-btn"
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button id="slider-next-btn"
                             class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" d="M9 5l7 7-7 7">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" d="M9 5l7 7-7 7">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<button id="chat-open-btn"
+    <button id="chat-open-btn"
         class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xl hover:bg-[var(--primary-hover)] transition-all duration-300 hidden"
         aria-label="Open Chatbot">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4v1.25H7.5V4h1zM8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM5.5 8a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
-    </svg>
-</button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4v1.25H7.5V4h1zM8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM5.5 8a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+        </svg>
+    </button>
 
-<div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
-    <div id="chat-card"
-         class="w-80 h-[28rem] flex flex-col rounded-[var(--radius)] shadow-2xl overflow-hidden transition-all duration-300 transform scale-100 bg-[var(--card)] border border-[var(--border)]">
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+        <div id="chat-card"
+            class="w-80 h-[28rem] flex flex-col rounded-[var(--radius)] shadow-2xl overflow-hidden transition-all duration-300 transform scale-100 bg-[var(--card)] border border-[var(--border)]">
 
-        <div class="p-3 bg-[var(--secondary)] text-[var(--secondary-foreground)] flex items-center justify-between">
-            <div class="flex items-center">
-                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                <h3 class="font-semibold text-sm">AI Assistant</h3>
-            </div>
-            <button id="chat-close-btn"
+            <div class="p-3 bg-[var(--secondary)] text-[var(--secondary-foreground)] flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                    <h3 class="font-semibold text-sm">AI Assistant</h3>
+                </div>
+                <button id="chat-close-btn"
                     class="text-[var(--secondary-foreground)] hover:text-white transition-colors text-lg"
                     aria-label="Close Chatbot">
-                &times;
-            </button>
-        </div>
+                    &times;
+                </button>
+            </div>
 
-        <div id="chat-messages" class="flex-grow p-4 space-y-4 overflow-y-auto custom-scrollbar">
-        </div>
+            <div id="chat-messages" class="flex-grow p-4 space-y-4 overflow-y-auto custom-scrollbar">
+            </div>
 
-        <div class="p-4 border-t border-[var(--border)] text-center text-xs text-[var(--muted-foreground)]">
-            Stable diffusion AI Integration Demo
-        </div>
+            <div class="p-4 border-t border-[var(--border)] text-center text-xs text-[var(--muted-foreground)]">
+                Stable diffusion AI Integration Demo
+            </div>
 
+        </div>
     </div>
-</div>
 
-<script>
-    const levelMap = {
-        0: 'Learning',
-        1: 'Trainee',
-        2: 'Beginner',
-        3: 'Junior',
-        4: 'Junior+',
-        5: 'Intermediate',
-        6: 'Mid-Level',
-        7: 'Mid+',
-        8: 'Senior',
-        9: 'Senior+',
-        10: 'Expert'
-    };
+    <script src="main.js"></script>
 
-
-    const allSkills = {
-        // Frontend
-        'AstroJS': 4,
-        'Svelte/SvelteKit': 9,
-        'VueJS/NuxtJS': 8,
-        'React/NextJS': 4,
-        'RxJS': 7,
-        'TailwindCSS': 9,
-        'PWA/SPA': 8,
-
-        // Backend
-        'NodeJS': 9,
-        'ExpressJS': 8,
-        'NestJS': 5,
-        'AdonisJS': 8,
-        'SocketIO/Websocket': 10,
-        'REST API': 10,
-        'NATS': 8,
-        'RabbitMQ': 1,
-        'PostgreSQL': 3,
-        'MongoDB': 5,
-
-        // Blockchain
-        'DApp/DEX Dev': 7,
-        'HD Wallet': 9,
-        'WalletConnect': 8,
-
-        // DevOps
-        'n8n': 1,
-        'Docker': 4,
-        'CI/CD': 4,
-        'Git Flow': 7,
-        'Performance Optimization': 7,
-        'Microservices': 8
-    };
-
-    // Helper function to build a skill group
-    function makeSkillGroup(skillNames, projects) {
-        return {
-            labels: skillNames,
-            data: skillNames.map(name => allSkills[name] ?? 0),
-            projects
-        };
-    }
-
-    const skillsData = {
-        all: makeSkillGroup(
-            ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'RxJS', 'NodeJS', 'AdonisJS', 'NestJS', 'NATS', 'Docker', 'WalletConnect', 'Microservices'],
-            'Kebrin Exchange, Oraclez DEX, HamtaPay, adonis5-nats-broker, Xchanger Exchange'
-        ),
-        frontend: makeSkillGroup(
-            ['Svelte/SvelteKit', 'VueJS/NuxtJS', 'React/NextJS', 'AstroJS', 'RxJS', 'TailwindCSS', 'PWA/SPA'],
-            'Kebrin Exchange, 724 Holding, Erythron Exchange, Oraclez DEX', "Toos Ravin Saze"
-        ),
-        backend: makeSkillGroup(
-            ['NodeJS', 'NestJS', 'AdonisJS', 'REST API', 'NATS', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
-            'HamtaPay Crypto Exchange, adonis5-nats-broker, Navosh'
-        ),
-        blockchain: makeSkillGroup(
-            ['DApp/DEX Dev', 'WalletConnect', 'Web3JS', 'EthersJS', 'Crypto Ops', 'HD Wallet'],
-            'Oraclez DEX Bridge, 724 Holding, HamtaPay, Xchanger Exchange'
-        ),
-        devops: makeSkillGroup(
-            ['n8n', 'Docker', 'CI/CD', 'Git Flow', 'Nginx', 'Performance Optimization'],
-            'HamtaPay Crypto Exchange, Kebrin Exchange, Xchanger Exchange'
-        )
-    };
-
-
-    const timelineData = [
-        {
-            role: 'Front-End Team Lead & Developer',
-            company: 'Kebrin Exchange (formerly Erythron)',
-            date: 'Nov 2023 – Present',
-            details: [
-                'Led the complete frontend redevelopment, re-branding (Erythron to Kebrin), and architectural migration of the crypto exchange platform.',
-                'Engineered a new, performant frontend using SvelteKit, RxJS, and TailwindCSS, introducing a reactive state management and data feed pattern.',
-                'Implemented and utilized TradingView Charting Library with the UDF data feed structure for advanced price history visualization.',
-                'Reduced system complexity by 30% and improved performance by designing and implementing a modular, reusable component library.',
-                'Designed and implemented a modular component library, reducing complexity and improving application performance for both desktop and mobile views.'
-            ]
-        },
-        {
-            role: 'Senior Full-Stack & Microservice Architect',
-            company: 'HamtaPay Crypto Exchange',
-            date: 'Mar 2020 – Sep 2023',
-            details: [
-                'Designed and led the development of a high-volume, microservice-based backend from the ground up using Node.js/AdonisJS and PostgreSQL.',
-                'Engineered a core multi-blockchain deposit and withdrawal system, leveraging NATS Message Broker for asynchronous, reliable communication.',
-                'Implemented core system architecture, including Kong API Gateway, robust caching, and time-series monitoring with InfluxDB/VictoriaMetrics.',
-                'Gained extensive knowledge in Digital Wallet structures (HD, BIP44) and secured on-chain transaction processes, supporting thousands of concurrent users.',
-                'Initially joined as a Front-End Developer, fully rewriting the legacy platform with Vue.js/Nuxt.js to improve scalability and mobile performance.'
-            ]
-        },
-        {
-            role: 'Senior Freelance Full-Stack Developer',
-            company: 'Oraclez DEX Bridge & Others',
-            date: 'Jun 2022 – Nov 2024 (Contract, Remote)',
-            details: [
-                'Developed complex DEX and bridge interfaces using React, Next.js, and Vue.js, enabling seamless cross-chain swaps.',
-                'Integrated WalletConnect and MetaMask for DApp interaction and implemented RxJS for reactive, real-time blockchain communication.',
-            ]
-        },
-        {
-            role: 'Full-Stack Engineer',
-            company: 'Xchanger Exchange & Atiex (Crypto Projects)',
-            date: 'Oct 2022 – Apr 2023 (Contract, Remote)',
-            details: [
-                'Built and deployed a full-service crypto exchange platform (similar to Changelly) covering backend, frontend, DevOps, and blockchain integration.',
-                'Developed the robust backend using Node.js/AdonisJS, integrating HD Wallets (BIP32) to manage multi-chain operations (BSC, TRX, BTC, ETH).'
-            ]
-        },
-        {
-            role: 'Front-End Developer',
-            company: '724 Holding',
-            date: 'Apr 2023 – Jun 2024 (Remote)',
-            details: [
-                'Developed gamified crypto trading platform features, integrating Reown AppKit for wallet connection and blockchain interactions.',
-                'Optimized page load times and user experience using Svelte and RxJS.',
-            ]
-        },
-        {
-            role: 'Full-Stack Developer',
-            company: 'Navosh',
-            date: 'Mar 2019 – Jun 2020',
-            details: [
-                'Pioneered the company\'s transition to a modern frontend, leading the adoption and implementation of Vue.js and Nuxt.js for SSR projects.',
-                'Built and maintained backend services with PHP (Yii2) and MySQL, mastering concepts like PWA, SPA, and SSR.',
-            ]
-        }
-    ];
-
-    const portfolioProjects = [
-        {
-            title: 'Kebrin Exchange',
-            role: 'Front-End Developer',
-            date: 'Nov 2023 – Oct 2025',
-            tech: ["SvelteJS", "SvelteKit", 'TailwindCss', 'Rxjs', 'Reactive Programming', "TradingView Charting Library", 'SSR', "CSR"],
-            description: '',
-            imageUrl: 'https://placehold.co/800x400/13c4c1/ffffff?text=Kebrin+Exchange&font=lora',
-            websiteUrl: 'https://kebrin.ir',
-            images: [
-                './projects/kebrin-desktop/screenshot-01.png',
-                './projects/kebrin-desktop/screenshot-02.png',
-                './projects/kebrin-desktop/screenshot-03.png',
-                './projects/kebrin-desktop/screenshot-04.png',
-                './projects/kebrin-desktop/screenshot-05.png',
-                './projects/kebrin-desktop/screenshot-06.png',
-                './projects/kebrin-desktop/screenshot-07.png',
-                './projects/kebrin-desktop/screenshot-08.png',
-                './projects/kebrin-desktop/screenshot-09.png',
-                './projects/kebrin-desktop/screenshot-10.png',
-                './projects/kebrin-desktop/screenshot-11.png',
-                './projects/kebrin-desktop/screenshot-12.png',
-                './projects/kebrin-desktop/screenshot-13.png',
-                './projects/kebrin-desktop/screenshot-14.png',
-            ]
-        },
-        {
-            title: 'Kebrin Exchange (Mobile WebApp)',
-            role: 'Front-End Developer',
-            date: 'Nov 2023 – Oct 2025',
-            tech: ["SvelteJS", "SvelteKit", 'TailwindCss', 'Rxjs', 'Reactive Programming', "TradingView Charting Library", 'SSR', "CSR", "Hash History Strategy"],
-            description: '',
-            imageUrl: 'https://placehold.co/800x400/13c4c1/ffffff?text=Kebrin+Exchange&font=lora',
-            websiteUrl: 'https://kebrin.ir',
-            images: [
-                './projects/kebrin-mobile/screenshot-01.png',
-                './projects/kebrin-mobile/screenshot-02.png',
-                './projects/kebrin-mobile/screenshot-03.png',
-                './projects/kebrin-mobile/screenshot-04.png',
-                './projects/kebrin-mobile/screenshot-05.png',
-            ]
-        },
-        {
-            title: 'Task 724',
-            role: 'Front-End Developer',
-            date: 'Apr 2025 – Jun 2025',
-            tech: ['Svelte v5', 'SvelteKit', 'RxJS', 'Tailwind v4', 'Reown Appkit', 'Metamask', 'Trust Wallet', 'Gamification', 'Crypto', 'ethersJS', 'Vite', 'typescript', 'bits-ui'],
-            description: 'Developed a gamified crypto trading platform feature set, integrating a reward system with gems and tokens, and connecting to various wallets using modern web3 libraries. The primary focus was creating an engaging and intuitive user experience using Svelte and RxJS.',
-            imageUrl: 'https://placehold.co/800x400/3658a3/ffffff?text=Task+724&font=lora',
-            websiteUrl: 'https://task724.com',
-            images: [
-                './projects/task724/screenshot-01.png',
-                './projects/task724/screenshot-02.png',
-                './projects/task724/screenshot-03.png',
-                './projects/task724/screenshot-04.png',
-                './projects/task724/screenshot-05.png',
-                './projects/task724/screenshot-06.png',
-                './projects/task724/screenshot-07.png',
-                './projects/task724/screenshot-08.png',
-                './projects/task724/screenshot-09.png',
-                './projects/task724/screenshot-10.png',
-                './projects/task724/screenshot-11.png',
-                './projects/task724/screenshot-12.png',
-                './projects/task724/screenshot-13.png',
-                './projects/task724/screenshot-14.png',
-                './projects/task724/screenshot-15.png',
-                './projects/task724/screenshot-16.png',
-                './projects/task724/screenshot-17.png',
-                './projects/task724/screenshot-18.png',
-            ]
-        },
-        {
-            title: 'XChanger Exchange',
-            role: 'Full-Stack Web Developer',
-            date: 'Oct 2022 – Apr 2023',
-            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'NodeJS', 'AdonisJS', 'VueJS', 'primeVue', "Redis", 'SumSub KYC', 'Modular finance Payment', 'Tron Network', 'Bsc Network', 'Ethereum Network', "Bitcoin Network"],
-            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with NodeJS and Express, connected to a MariaDB database, while the frontend utilized VueJS for a reactive user interface.',
-            imageUrl: 'https://placehold.co/800x400/03c693/ffffff?text=XChanger+Exchange&font=lora',
-            websiteUrl: 'https://xchanger.uk',
-            images: [
-                './projects/xchanger/screenshot-01.png',
-                './projects/xchanger/screenshot-02.png',
-                './projects/xchanger/screenshot-03.png',
-                './projects/xchanger/screenshot-04.png',
-                './projects/xchanger/screenshot-05.png',
-                './projects/xchanger/screenshot-06.png',
-            ]
-        },
-        {
-            title: 'Atiex Exchange',
-            role: 'Full-Stack Web Developer',
-            date: 'Jun 2022 – Nov 2024',
-            tech: ['Docker', 'Docker Compose', 'Redis', 'MariaDB', 'NodeJS', 'ExpressJS', 'VueJS', 'Scss', 'Sass', "Lightweight Chart"],
-            description: 'Built a 24/7 crypto exchange, implementing KYC, multi-chain transactions, and real-time rate updates. The backend was built with NodeJS and Express, connected to a PostgreSQL database, while the frontend utilized VueJS for a reactive user interface.',
-            imageUrl: 'https://placehold.co/800x400/3ab795/ffffff?text=Atiex+Exchange&font=lora',
-            websiteUrl: 'https://atiex.uk',
-            images: [
-                './projects/atiex/screenshot-01.png',
-                './projects/atiex/screenshot-02.png',
-                './projects/atiex/screenshot-03.png',
-            ]
-        },
-        {
-            title: 'Hamtapay Exchange',
-            role: 'Front-End Developer',
-            date: 'Jun 2022 – Nov 2024',
-            tech: ['NodeJS', 'ExpressJS', 'VueJS', 'NuxtJS', 'Scss', 'Sass'],
-            description: '',
-            imageUrl: 'https://placehold.co/800x400/508bff/ffffff?text=Hamtapay+Exchange&font=lora',
-            websiteUrl: 'https://hamtapay.net',
-            images: [
-                './projects/hamtapay-website/screenshot-01.png',
-                './projects/hamtapay-website/screenshot-02.png',
-                './projects/hamtapay-website/screenshot-03.png',
-                './projects/hamtapay-website/screenshot-04.png',
-                './projects/hamtapay-website/screenshot-05.png',
-            ]
-        },
-        {
-            "title": "Toos Ravin Saze",
-            "role": "Front-End Developer",
-            "date": "Apr 2020 – May 2020",
-            "tech": ["VueJS", "NuxtJS", "SCSS", "Sass"],
-            "description": "Worked on the website of Toos Ravin Saze, a consulting engineering firm established in 2004 focusing on structural and architectural design. Developed the front-end using VueJS and NuxtJS for a reactive, component-based interface. Collaborated with the design and architecture teams to integrate project galleries and team profiles. Also implemented responsive layouts, SCSS/Sass modular styles, and optimized the site for performance and accessibility.",
-            "imageUrl": "https://placehold.co/800x400/e20a17/ffffff?text=Toos+Ravin+Saze&font=lora",
-            "websiteUrl": "https://trs-cec.com",
-            "images": [
-                "./projects/toos-ravin-saze/screenshot-01.png",
-                "./projects/toos-ravin-saze/screenshot-02.png",
-                "./projects/toos-ravin-saze/screenshot-03.png"
-            ]
-        }
-    ];
-
-    let skillsChart;
-    let currentImageIndex = 0;
-    let projectImages = [];
-
-
-    // --- Chart Functions ---
-    const createOrUpdateChart = (filter = 'all') => {
-        const chartData = skillsData[filter];
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-
-        // Get Oklch Primary color dynamically from CSS root variables
-        const rootStyle = getComputedStyle(document.documentElement);
-        const accentColor = rootStyle.getPropertyValue('--primary').trim();
-        const headingColor = rootStyle.getPropertyValue('--foreground').trim();
-        const borderColor = rootStyle.getPropertyValue('--border').trim();
-
-        const chartConfig = {
-            type: 'bar',
-            data: {
-                labels: chartData.labels,
-                datasets: [{
-                    label: 'Proficiency (1-10)',
-                    data: chartData.data,
-                    backgroundColor: accentColor,
-                    borderColor: accentColor,
-                    borderWidth: 1,
-                    borderRadius: 6,
-                }]
-            },
-            options: {
-                indexAxis: 'x',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 10,
-                        ticks: {color: headingColor},
-                        grid: {color: borderColor}
-                    },
-                    y: {
-                        ticks: {
-                            color: headingColor,
-                            callback: function (value) {
-                                return levelMap[value] || value;
-                            }
-                        },
-                        grid: {display: false}
-                    }
-                },
-                plugins: {
-                    legend: {display: false},
-                    tooltip: {
-                        callbacks: {
-                            title: (tooltipItems) => tooltipItems[0].label,
-                            label: (context) => {
-                                const score = context.raw;
-                                const label = levelMap[Math.round(score)] || 'Unknown';
-                                return ` Level: ${label}`;
-                            }
-                        }
-                    }
-
-                }
-            }
-        };
-
-        if (skillsChart) {
-            skillsChart.data.labels = chartData.labels;
-            skillsChart.data.datasets[0].data = chartData.data;
-            skillsChart.data.datasets[0].backgroundColor = accentColor;
-            skillsChart.data.datasets[0].borderColor = accentColor;
-            skillsChart.options.scales.x.ticks.color = headingColor;
-            skillsChart.options.scales.y.ticks.color = headingColor;
-            skillsChart.options.scales.x.grid.color = borderColor;
-            skillsChart.update();
-        } else {
-            skillsChart = new Chart(ctx, chartConfig);
-        }
-        document.getElementById('project-text').textContent = chartData.projects;
-    };
-
-    // --- Population Functions ---
-    const populateTimeline = () => {
-        const timelineContainer = document.querySelector('#career-journey .relative');
-        let timelineHTML = '';
-        timelineData.forEach(item => {
-            timelineHTML += `
-                    <div class="relative pl-12">
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-6 top-2.5 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[var(--card)] border-[3px] border-[var(--primary)]"></div>
-                        <div class="bg-[var(--card)] rounded-[var(--radius)] shadow-lg p-6 hover:shadow-2xl transition-all duration-300 border border-[var(--border)]">
-                            <p class="font-mono text-sm text-[var(--muted-foreground)]">${item.date}</p>
-                            <h3 class="text-xl font-bold mt-1 text-[var(--foreground)]">${item.role}</h3>
-                            <p class="font-semibold text-[var(--foreground)]">${item.company}</p>
-                            <ul class="mt-4 space-y-2 text-sm list-disc pl-5 text-[var(--foreground)]">
-                                ${item.details.map(d => `<li>${d}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                `;
-        });
-        timelineContainer.innerHTML = timelineHTML;
-    };
-
-    const populatePortfolio = () => {
-        const gridContainer = document.getElementById('projects-grid');
-        gridContainer.innerHTML = portfolioProjects.map((project, index) => `
-                <div class="project-card bg-[var(--card)] rounded-[var(--radius)] shadow-lg border border-[var(--border)] hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden cursor-pointer" data-project-index="${index}">
-                    <img src="${project.imageUrl}" alt="${project.title} project cover" class="w-full h-52 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
-                    <div class="p-5 flex flex-col flex-grow">
-                        <p class="font-mono text-xs text-[var(--muted-foreground)]">${project.date}</p>
-                        <h3 class="text-lg font-bold mt-1 text-[var(--foreground)]">${project.title}</h3>
-                        <p class="font-semibold text-sm text-[var(--foreground)]">${project.role}</p>
-                        <a class="font-light text-sm text-[var(--muted-foreground)]" target="_blank" href="${project.websiteUrl}">${project.websiteUrl}</a>
-                        <p class="mt-3 text-sm text-[var(--muted-foreground)] flex-grow">${project.description.substring(0, 100)}...</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            ${project.tech.map(t => `<span class="text-xs font-semibold py-1 px-2.5 rounded-full text-[var(--secondary-foreground)] bg-[var(--secondary)]">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-    };
-
-    // --- Modal & Slider Functions ---
-    const modal = document.getElementById('project-modal');
-    const modalBackdrop = document.getElementById('modal-backdrop');
-    const modalPanel = document.getElementById('modal-panel');
-    const modalSliderContent = document.getElementById('modal-slider-content');
-
-    const openModal = (projectIndex) => {
-        const project = portfolioProjects[projectIndex];
-        if (!project) return;
-
-        document.body.classList.add('modal-open');
-        document.getElementById('modal-title').textContent = project.title;
-        document.getElementById('modal-role').textContent = project.role;
-        document.getElementById('modal-date').textContent = project.date;
-        document.getElementById('modal-description').textContent = project.description;
-
-        projectImages = project.images || [];
-        modalSliderContent.innerHTML = projectImages.map(imgUrl =>
-            `<img src="${imgUrl}" class="w-full h-auto flex-shrink-0 object-contain" style="flex-basis: 100%;" onerror="this.style.display='none'">`
-        ).join('');
-
-        currentImageIndex = 0;
-        updateSlider();
-
-        modal.classList.remove('hidden');
-        requestAnimationFrame(() => {
-            modalBackdrop.classList.remove('opacity-0');
-            modalPanel.classList.remove('opacity-0', 'scale-95');
-        });
-    };
-
-    const closeModal = () => {
-        modalBackdrop.classList.add('opacity-0');
-        modalPanel.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            document.body.classList.remove('modal-open');
-        }, 300); // Match transition duration
-    };
-
-    const updateSlider = () => {
-        modalSliderContent.style.transform = `translateX(-${currentImageIndex * 100}%)`;
-        document.getElementById('slider-prev-btn').style.display = currentImageIndex === 0 ? 'none' : 'block';
-        document.getElementById('slider-next-btn').style.display = currentImageIndex === projectImages.length - 1 ? 'none' : 'block';
-    };
-
-    // --- Theme Functions ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const sunIcon = document.getElementById('sun-icon');
-    const moonIcon = document.getElementById('moon-icon');
-    const root = document.querySelector(':root');
-
-    const setColor = (theme) => {
-        const lightColors = ["oklch(63.7% 0.237 25.331)", "oklch(69.6% 0.17 162.48)", "oklch(62.3% 0.214 259.815)", "oklch(60.6% 0.25 292.717)", "oklch(76.9% 0.188 70.08)", "oklch(64.5% 0.246 16.439)", "oklch(55.4% 0.046 257.417)", "oklch(55.2% 0.016 285.938)", "oklch(76.8% 0.233 130.85)", "oklch(62.7% 0.265 303.9)"]
-        const darkColors = ["oklch(57.7% 0.245 27.325)", "oklch(59.6% 0.145 163.225)", "oklch(54.6% 0.245 262.881)", "oklch(54.1% 0.281 293.009)", "oklch(66.6% 0.179 58.318)", "oklch(58.6% 0.253 17.585)", "oklch(44.6% 0.043 257.281)", "oklch(44.2% 0.017 285.786)", "oklch(64.8% 0.2 131.684)", "oklch(55.8% 0.288 302.321)"]
-        const randomIndex = Math.floor(Math.random() * lightColors.length);
-        if (theme === 'dark') {
-            root.style.setProperty('--primary', darkColors[randomIndex]);
-        } else {
-            root.style.setProperty('--primary', lightColors[randomIndex]);
-        }
-    }
-
-    const setTheme = (theme) => {
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-            moonIcon.classList.remove('hidden');
-            sunIcon.classList.add('hidden');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            sunIcon.classList.remove('hidden');
-            moonIcon.classList.add('hidden');
-            localStorage.setItem('theme', 'light');
-        }
-        // Re-render chart to update colors
-        if (skillsChart) {
-            const activeButton = document.querySelector('.filter-btn.bg-\\[var\\(--primary\\)\\]');
-            let currentFilter = 'all';
-            if (activeButton) {
-                currentFilter = activeButton.id.replace('filter-', '') || 'all';
-            }
-            createOrUpdateChart(currentFilter);
-        }
-    };
-
-    const toggleTheme = () => {
-        const currentTheme = localStorage.getItem('theme');
-        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-    };
-
-    // --- Toast Notification ---
-    const showToast = (message) => {
-        const container = document.getElementById('toast-container');
-        const toast = document.createElement('div');
-        // Using Tailwind's predefined green classes for success message
-        toast.className = 'p-3 bg-green-600 text-white rounded-lg shadow-xl flex items-center space-x-2 transition-all duration-500 opacity-0 transform translate-y-full';
-        toast.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${message}</span>`;
-
-        container.appendChild(toast);
-
-        // Show animation
-        setTimeout(() => {
-            toast.classList.remove('opacity-0', 'translate-y-full');
-            toast.classList.add('opacity-100', 'translate-y-0');
-        }, 10);
-
-        // Hide animation and removal
-        setTimeout(() => {
-            toast.classList.remove('opacity-100', 'translate-y-0');
-            toast.classList.add('opacity-0', 'translate-y-full');
-            setTimeout(() => {
-                toast.remove();
-            }, 500);
-        }, 3000);
-    };
-
-    // --- Chatbot Functionality Script: Auto-Image Generation ---
-
-    // DOM Elements
-    const chatMessages = document.getElementById('chat-messages');
-    const chatCard = document.getElementById('chat-card');
-    const chatContainer = document.getElementById('chatbot-container');
-    const chatCloseBtn = document.getElementById('chat-close-btn');
-    const chatOpenBtn = document.getElementById('chat-open-btn');
-
-    const IMAGE_URL = "https://image-gen-ai.dev-zarghami.workers.dev?prompt=cyberpunk-web-developer-boy";
-
-    /**
-     * Creates and appends a new text message bubble to the chat window.
-     * @param {string} message - The text content of the message.
-     * @returns {HTMLElement} The created message bubble element.
-     */
-    function createTextMessage(message) {
-        const messageContainer = document.createElement('div');
-        messageContainer.className = 'flex justify-start';
-
-        const messageBubble = document.createElement('div');
-        messageBubble.className = 'max-w-[80%] p-3 rounded-xl rounded-tl-sm bg-[var(--secondary)] text-sm text-[var(--secondary-foreground)] shadow';
-        messageBubble.textContent = message;
-
-        messageContainer.appendChild(messageBubble);
-        chatMessages.appendChild(messageContainer);
-
-        // Auto-scroll to the bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return messageContainer;
-    }
-
-    /**
-     * Creates and appends a "typing" or "loading" bubble.
-     * @returns {HTMLElement} The loading bubble container for later removal.
-     */
-    function createLoadingMessage() {
-        const messageContainer = document.createElement('div');
-        messageContainer.className = 'flex justify-start';
-
-        const messageBubble = document.createElement('div');
-        // Simple loading indicator using Tailwind's animate-pulse utility
-        messageBubble.className = 'max-w-[80%] p-3 rounded-xl rounded-tl-sm bg-[var(--secondary)] text-sm text-[var(--secondary-foreground)] shadow';
-        messageBubble.innerHTML = '<span class="animate-pulse">Generating image...</span>';
-
-        messageContainer.appendChild(messageBubble);
-        chatMessages.appendChild(messageContainer);
-
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return messageContainer; // Return the container so we can easily remove the whole bubble later
-    }
-
-
-    /**
-     * Creates and appends a dynamic image message bubble to the chat window.
-     * This function now handles the image loading process and removes the loading indicator.
-     * @param {string} imageUrl - The URL for the AI-generated image.
-     * @param {HTMLElement} [loadingElement] - The loading message container to remove.
-     */
-    function createImageMessage(imageUrl, loadingElement) {
-        // Use the Image constructor to track loading state
-        const tempImg = new Image();
-        tempImg.alt = "AI-Generated Cyberpunk Web Developer";
-
-        tempImg.onload = () => {
-            // 1. Image loaded successfully, remove the loading state
-            if (loadingElement) {
-                loadingElement.remove();
-            }
-
-            // 2. Create and append the final image bubble
-            const messageContainer = document.createElement('div');
-            messageContainer.className = 'flex justify-start';
-
-            const messageBubble = document.createElement('div');
-            messageBubble.className = 'max-w-[80%] p-2 rounded-xl rounded-tl-sm bg-[var(--secondary)] shadow';
-
-            // Use the fully loaded image element (tempImg is now fully loaded)
-            tempImg.className = 'w-full h-auto rounded-lg object-cover cursor-pointer hover:opacity-90 transition-opacity';
-
-            // --- MODIFIED: Change click behavior to trigger a download ---
-            tempImg.onclick = () => {
-                const a = document.createElement('a');
-                a.href = imageUrl; // The source URL of the image
-                a.download = 'ai-generated-image.png'; // Set the default filename
-                // We must append and then remove the element for the download to work reliably across browsers
-                document.body.appendChild(a);
-                a.click(); // Programmatically trigger the download
-                document.body.removeChild(a);
-            };
-            // -----------------------------------------------------------
-
-            messageBubble.appendChild(tempImg);
-            messageContainer.appendChild(messageBubble);
-            chatMessages.appendChild(messageContainer);
-
-            // 3. Scroll to the bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        };
-
-        tempImg.onerror = () => {
-            // 1. Remove the loading state on error
-            if (loadingElement) {
-                loadingElement.remove();
-            }
-            // 2. Show an error message
-            createTextMessage("Sorry, the image generator failed to load the image. Please try again later.");
-        };
-
-        // Start the image load
-        tempImg.src = imageUrl;
-    }
-
-
-    /**
-     * Initiates the message sequence when the page loads.
-     */
-    function startChatSequence() {
-        // 1. First Message: Introduction and prompt
-        createTextMessage("Hello! I’m an AI Assistant. I'm generating a unique 'cyberpunk web developer boy' image for you.");
-
-        // 2. Second Action: Start loading animation and image generation after a brief pause
-        setTimeout(() => {
-            // Start the loading animation
-            const loadingElement = createLoadingMessage();
-
-            // Trigger image load immediately. The result (success/fail) will remove the loadingElement.
-            createImageMessage(IMAGE_URL, loadingElement);
-        }, 1500); // Wait 1.5s for the initial message to be read
-    }
-
-    // --- Event Listeners ---
-
-    // Close button functionality: Hides the card and shows the open button
-    chatCloseBtn.addEventListener('click', () => {
-        chatCard.classList.add('scale-0', 'opacity-0');
-        setTimeout(() => {
-            chatContainer.classList.add('hidden');
-            chatOpenBtn.classList.remove('hidden');
-        }, 300);
-    });
-
-    // Open button functionality: Shows the card and hides the open button
-    chatOpenBtn.addEventListener('click', () => {
-        chatContainer.classList.remove('hidden');
-        chatCard.classList.remove('scale-0', 'opacity-0');
-        chatOpenBtn.classList.add('hidden');
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
-    });
-
-    // --- Initialization ---
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Initialize Theme
-        const storedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (storedTheme) {
-            setTheme(storedTheme);
-            setColor(storedTheme)
-        } else if (systemPrefersDark) {
-            setTheme('dark');
-            setColor('dark')
-        } else {
-            setTheme('light');
-            setColor('light')
-        }
-
-        // 2. Populate Content
-        populateTimeline();
-        populatePortfolio();
-        // Initial chart render (must happen after theme is set so colors are correct)
-        createOrUpdateChart('all');
-        startChatSequence();
-
-        // 3. Setup Listeners
-        themeToggle.addEventListener('click', toggleTheme);
-
-        // Download button (simulated download)
-        document.getElementById('download-button').addEventListener('click', () => {
-            const a = document.createElement('a');
-            a.href = './files/hasan-zarghami-resume.pdf';
-            a.download = 'hasan-zarghami-resume.pdf';
-            a.target = '_blank';
-            a.click();
-        });
-
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.id.replace('filter-', '');
-                createOrUpdateChart(filter);
-
-                filterButtons.forEach(btn => {
-                    // Reset all buttons to default state
-                    btn.classList.remove('bg-[var(--primary)]', 'text-[var(--primary-foreground)]');
-                    btn.classList.add('bg-[var(--card)]', 'text-[var(--foreground)]', 'border', 'border-[var(--border)]', 'hover:bg-[var(--secondary)]');
-                });
-
-                // Set active button state
-                button.classList.remove('bg-[var(--card)]', 'text-[var(--foreground)]', 'border', 'border-[var(--border)]', 'hover:bg-[var(--secondary)]');
-                button.classList.add('bg-[var(--primary)]', 'text-[var(--primary-foreground)]');
-            });
-        });
-
-        // Modal & Project Card Listeners
-        document.getElementById('projects-grid').addEventListener('click', (e) => {
-            const card = e.target.closest('.project-card');
-            if (card) {
-                openModal(card.dataset.projectIndex);
-            }
-        });
-
-        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-        modalBackdrop.addEventListener('click', closeModal);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // Slider Listeners
-        document.getElementById('slider-prev-btn').addEventListener('click', () => {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateSlider();
-            }
-        });
-        document.getElementById('slider-next-btn').addEventListener('click', () => {
-            if (currentImageIndex < projectImages.length - 1) {
-                currentImageIndex++;
-                updateSlider();
-            }
-        });
-    });
-</script>
 </body>
 
 </html>
